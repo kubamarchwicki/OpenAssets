@@ -7,10 +7,16 @@
 </head>
 <body>
 	<div ng-view></div>
-	
+
 	<script src="lib/jquery/jquery.js"></script>
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-resource.min.js"></script>
-	<script src="js/openAssets.js"></script>
+
+
+    Ja nizej podpisany <input name="who" ng-model="person.who"> <br>
+    urodzony <input name = "birth"> w <input name name="where" ng-model="person.birth">  <br>
+    zamieszkaly(a) <input name = "living" ng-model="person.living">
+    <button ng:click="save()">submit</button>
+
 </body>
 </html>
