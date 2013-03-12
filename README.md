@@ -1,0 +1,1 @@
+OpenAssets project - form to digitalize Assets Declaration from Members of Parlament
