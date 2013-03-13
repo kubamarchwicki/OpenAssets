@@ -36,7 +36,9 @@ public class DocumentsDaoImpl implements DocumentsDao {
 	private String getIdFromDbObjectDocument(DBObject obj) {
 		try {
 			BasicDBObject data = (BasicDBObject) obj.get("data");
-			return (String) data.get("dokument_id");
+			String returnStr = (String) data.get("dokument_id");
+			System.out.println("dokument_id == "+returnStr);
+			return returnStr;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -46,7 +48,9 @@ public class DocumentsDaoImpl implements DocumentsDao {
 	
 	private String getIdEpFromDbObjectDocument(DBObject obj) {
 		try {
-			return (String) obj.get("id");
+			String returnStr = (String) obj.get("id");
+			System.out.println("id == "+returnStr);
+			return returnStr; 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
