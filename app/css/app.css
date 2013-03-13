@@ -1,0 +1,32 @@
+/* app css stylesheet */
+
+body {
+  padding-top: 20px;
+}
+
+
+.thumb {
+  float: left;
+  /*margin: -1em 10em .5em 10em;*/
+  /*padding-bottom: 1em;*/
+  height: 300px;
+  width: 300px;
+}
+
+
+/** Detail View **/
+img.assetImg {
+  float: left;
+  border: 1px solid black;
+  margin-right: 3em;
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 2em;
+  height: 200px;
+  width: 200px;
+}
+
+
+h1 {
+  border-bottom: 1px solid gray;
+}

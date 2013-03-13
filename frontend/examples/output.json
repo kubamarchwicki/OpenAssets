@@ -1,0 +1,87 @@
+{
+	"ep_object_id": "8757", 
+	"document_id": "124543",
+	"assets_data": {
+		"name": "Andrzej Tadeusz Rozenek",
+		"date_of_birth": "17.03.1969",
+		"place_of_birth": "Warszawie",
+		"work": "Pose³ na sejm RP VII kadencji",
+		"part_1": {
+			"cash_pln": "92560,00 PLN",
+			"cash_other": "5389,00 USD",
+			"stocks": "Program Inwestycyjny Aegon Dolar 15411 USD"
+		},
+		"part_2": {
+			"house_area": "130", 
+			"house_value": "600 tyœ. PLN", 
+			"house_ownership": "Wspó³w³asnoœæ ma³¿eñska / kredyt hipoteczny",
+			"flat_area": "61", 
+			"flat_value": "350 tyœ. PLN",
+			"flat_ownerhip": "Wspó³w³asnoœæ ma³¿eñska",
+			"farm_type": "Nie dotyczy", 
+			"farm_area": "", 
+			"farm_value": "", 
+			"farm_buildings": "", 
+			"farm_ownership": "", 
+			"farm_income": "",
+			"other": "1) Mieszkanie 50m2, Wartoœæ 400tyœ PLN, w³asnoœæ 2) Dom 80m2 Wartoœæ 400tyœ PLN - w³asnoœæ 3) Dzia³ka budowlana, wartoœæ 20tyœ PLN - W³aœnoœæ 4) Dzia³ka budowlana, wartoœæ 20tyœ PLN - w³aœnoœæ"
+		},		
+		"part_3": {
+			"stocks": "Nie dotyczy", 
+			"stocks_income": ""
+		},
+		"part_4": {
+			"stocks_government": "Nie dotyczy", 
+			"stocks_government_more_10_proc": "Nie dotyczy", 
+			"stocks_government_income": "Nie dotyczy",
+			"stocks": "Nie dotyczy", 
+			"stocks_income": "Nie dotyczy"
+		},
+		"part_5": {
+			"stocks_government": "Nie dotyczy", 
+			"stocks_government_more_10_proc": "Nie dotyczy", 
+			"stocks_government_income": "Nie dotyczy",
+			"stocks": "Nie dotyczy", 
+			"stocks_income": "Nie dotyczy"
+		},
+		"part_6": {
+			"auction": "Nie dotyczy"
+		},
+		"part_7": {
+			"self_employment": "Nie dotyczy", 
+			"self_employment_personal": "",
+			"self_employment_with_others": "",
+			"self_employment_income": "",
+			"represent_self_employment": "Nie dotyczy", 
+			"represent_self_employment_personal": "",
+			"represent_self_employment_with_others": "",
+			"represent_self_employment_income": ""
+		},
+		"part_8": {
+			"public_company": "Nie dotyczy", 
+			"public_company_board": "",
+			"public_company_directors": "",
+			"public_company_audit": "",
+			"public_company_income": "",
+			"foundation": "Nie dotyczy", 
+			"foundation_board": "Nie dotyczy",
+			"foundation_directors": "Nie dotyczy",
+			"foundation_audit": "Nie dotyczy",
+			"foundation_income": ""
+		},
+		"part_9": {
+			"other_income": "\"VRMA\" - sp z o.o. 132 162,17 PLN (od 01.2011r do 10.2011r.)"
+		},
+		"part_10": {
+			"cars": "- Renault Scenic - 2008r - Daewoo Nubira - 1999r - Renault Megane Sport - 2011r"
+		},
+		"part_11": {
+			"liabilities": "Kredyt hipoteczny na zakup domu 119 415 CHF"
+		},
+		"city_place": "Warsztawa 30.04.2012"
+		
+		
+	
+		
+	}
+}

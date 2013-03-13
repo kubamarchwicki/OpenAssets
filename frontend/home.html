@@ -1,0 +1,28 @@
+<body ng-controller="InitializeForms">
+
+	<div class="row">
+		<div class="span6 document-image">
+			<ul>
+			   <li ng-repeat="docimage in docimages">
+				  <img src="{{docimage}}"/>
+			     
+			    </li>
+			</ul>
+
+		</div>
+
+		<div class="span6 document-form">
+			<form ng-submit="saveInput()">
+				<input type="submit" value="Save">
+			</form>
+		</div>
+	</div>
+
+
+
+</body>
+
+
+
+
+
