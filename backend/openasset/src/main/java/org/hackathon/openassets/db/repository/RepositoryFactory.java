@@ -14,7 +14,13 @@ public class RepositoryFactory {
 	 */
 	public DocumentRepository getDocumentRepository(
 			Class<? extends DocumentRepository> clazz) {
-		throw new RuntimeException("Not implemented yet.");
+		try {
+			return clazz.newInstance();
+		} catch (InstantiationException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
