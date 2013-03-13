@@ -1,17 +1,15 @@
-angular.module('openAssets', []).
+angular.module('openAssets', ['ngResource']).
   config(function($routeProvider) {
     $routeProvider.
       when('/', {controller:InitializeForms, templateUrl:'home.html'}).
       otherwise({redirectTo:'/'});
   });
 
-function InitializeForms($scope) {
-	$scope.docimages = [
-	    {"url": "examples/docimage1.jpg"},
-	    {"url": "examples/docimage2.gif"},
-	    {"url": "examples/docimage3.jpg"}
-	    
-  ];
-  //TODO: retrieve list of images and add them to the model so they are shown in the view (using databinding)
+function InitializeForms($scope, $http) {
+  $http.get(window.location.pathname + 'examples/input.json').success(
+    function(data, status, headers, config) {
+      $scope.docimages = data.images;
+    }
+  );
 }
  

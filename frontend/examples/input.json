@@ -2,11 +2,8 @@
 	"ep_object_id": "8757", 
 	"document_id": "124543",
 	"images": [
-		"http://epanstwo.net/docs/imgs/153743/153743001.png", 
-		"http://epanstwo.net/docs/imgs/153743/153743002.png", 
-		"http://epanstwo.net/docs/imgs/153743/153743003.png",
-		"http://epanstwo.net/docs/imgs/153743/153743004.png",
-		"http://epanstwo.net/docs/imgs/153743/153743005.png", 
-		"http://epanstwo.net/docs/imgs/153743/153743006.png"
+		"examples/docimage1.jpg", 
+		"examples/docimage2.gif", 
+		"examples/docimage3.jpg"
 	]
 }
