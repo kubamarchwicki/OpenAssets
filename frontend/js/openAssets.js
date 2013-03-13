@@ -11,5 +11,9 @@ function OpenAssetsCtrl($scope, $http) {
       $scope.docimages = data.images;
     }
   );
+  
+  $scope.saveInput = function(){
+    //Todo: Store the user-entered data on the server.
+  };
 }
  
