@@ -1,11 +1,11 @@
 package org.hackathon.openassets.db.repository.mongodb;
 
-import java.math.BigDecimal;
-
+import org.hackathon.openassets.model.DbObjectIdPair;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 public class DocumentsDaoImpl implements DocumentsDao {
@@ -20,7 +20,7 @@ public class DocumentsDaoImpl implements DocumentsDao {
 		DBObject document = null;
 
 		BasicDBObject query = new BasicDBObject("data.dokument_id", documentId);
-		
+
 		System.out.println(query);
 		document = documentsCollection.findOne(query);
 
@@ -33,16 +33,49 @@ public class DocumentsDaoImpl implements DocumentsDao {
 		return document;
 	}
 
-	public Long getIdFromDbObjectDocument(DBObject obj) {
+	private String getIdFromDbObjectDocument(DBObject obj) {
 		try {
 			BasicDBObject data = (BasicDBObject) obj.get("data");
-			return Long.parseLong((String) data.get("dokument_id"));
-		} catch (NumberFormatException e) {
+			return (String) data.get("dokument_id");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	private String getIdEpFromDbObjectDocument(DBObject obj) {
+		try {
+			return (String) obj.get("id");
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 
 	}
 
+	@Override
+	public DbObjectIdPair getRandomIncompleteDocumentId() {
+		DBCursor cursor = null;
+		DbObjectIdPair randomDocumentIdPair = new DbObjectIdPair();
+		try {
+			BasicDBObject query = new BasicDBObject("trusted", "no");
+			cursor = documentsCollection.find(query);
+
+			while (cursor.hasNext()) {
+				DBObject object = cursor.next();
+				randomDocumentIdPair.setEp_object_id(getIdEpFromDbObjectDocument(object));
+				randomDocumentIdPair.setDocument_id(getIdFromDbObjectDocument(object));
+				System.out.println(cursor.next());
+				break;
+			}
+			return randomDocumentIdPair;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return randomDocumentIdPair;
+		} finally {
+			cursor.close();
+		}
+	}
 
 }
