@@ -8,17 +8,15 @@
 			<div class="span6 document-image">
 				<img src="{{docimage.url}}"/>
 			</div>
-			<ul>
-			  <div ng-repeat="field in form_definition.fields">
-					<div class="span2">
-						{{field.desc}}
-					</div>
-					<div class="span3">
-						 <input type="text" name="{{field.name}}"/>
-					</div>
-					
+			
+			<div class="span4 document-form">
+				<div ng-repeat="field in form_definition.fields">
+					 <label>{{field.desc}}</label>
+					 <input type="text" name="{{field.name}}"/>
 				</div>
-			</ul>
+			</div>		
+			
+			
 
 		</div>
 
