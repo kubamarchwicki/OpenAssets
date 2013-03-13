@@ -4,9 +4,7 @@ import java.io.IOException;
 
 import org.hackathon.openassets.dao.DocumentsDao;
 import org.hackathon.openassets.dao.DocumentsDaoImpl;
-import org.hackathon.openassets.document.HtmlDocumentSnippetReader;
-import org.hackathon.openassets.services.rest.ResponseMaker;
-
+import org.hackathon.openassets.datagrabber.HtmlDocumentSnippetReader;
 
 import com.mongodb.DB;
 import com.mongodb.DBObject;
@@ -26,22 +24,26 @@ public class DbMongoClient {
 
 	}
 
+	public DocumentsDao getDocumentsDao() {
+		return documentsDao;
+	}
+
 	public DbMongoClient(String mongoURIString) throws IOException {
 		final MongoClient mongoClient = new MongoClient(new MongoClientURI(
 				mongoURIString));
 		final DB database = mongoClient.getDB("hackaton");
 		documentsDao = new DocumentsDaoImpl(database);
-		DBObject doc = documentsDao.findDocument("153481");
-		System.out.println("Pobrano id dokumentu "
-				+ documentsDao.getIdFromDbObjectDocument(doc));
-		
-		HtmlDocumentSnippetReader reader = new HtmlDocumentSnippetReader();
-		for (String url : reader.getImageUrls(153481L)){
-			System.out.println("URL" +url);
-		}
-		
-		ResponseMaker responseMaker = new ResponseMaker();
-		System.out.println("Response: "+responseMaker.makeJsonResponse(153481L));
+		// DBObject doc = documentsDao.findDocument("153481");
+		// System.out.println("Pobrano id dokumentu "
+		// + documentsDao.getIdFromDbObjectDocument(doc));
+		//
+		// HtmlDocumentSnippetReader reader = new HtmlDocumentSnippetReader();
+		// for (String url : reader.getImageUrls(153481L)){
+		// System.out.println("URL" +url);
+		// }
+
+		// ResponseMaker responseMaker = new ResponseMaker();
+		// System.out.println("Response: "+responseMaker.makeJsonResponse(153481L));
 	}
 
 }

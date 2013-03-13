@@ -1,4 +1,4 @@
-package org.hackathon.openassets.document;
+package org.hackathon.openassets.datagrabber;
 
 import java.io.BufferedReader;
 import java.io.IOException;
