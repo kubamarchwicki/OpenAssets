@@ -5,24 +5,25 @@ app.form_definition = {
 			fields : [
 				{ name: "name", desc: "Imię"},
 				{ name: "date_of_birth", desc: "Data urodzenia"},
-				{ name: "place_of_birth": desc: "Miejsce urodzenia" },
+				{ name: "place_of_birth", desc: "Miejsce urodzenia" },
 				{ name: "work", desc: "Miejsce zatrudnienia"},
 				{ name: "cash_pln", desc: "Środki pieniężne zgromadzone w walucie polskiej" }, 
 				{ name: "cash_other", desc: "Środki pieniężne zgromadzone w walucie obcej" }, 
-				{ name: "stocks", desc: "Papiery wartościowe" }
+				{ name: "stocks", desc: "Papiery wartościowe" },
+				{ name: "house_area", desc: "Dom o powierzchni" },
+				{ name: "house_value", desc: "Wartość mieszkania" },
+				{ name: "house_ownership", desc: "Tytuł prawny" }
 			]
 		},
 		page2: {
 			fields: [
-				{ name: "house_area", desc: "Mieszkanie o powierzchni" },
-				{ name: "house_value", desc: "Wartość mieszkania" },
-				{ name: "house_ownership", desc: "Tytuł prawny" },
+				
 				{ name: "farm_type", desc: "Rodzaj gospodarstwa" },
 				{ name: "farm_area", desc: "Powierzchnia" },
 				{ name: "farm_value", desc: "Wartość" },
 				{ name: "farm_buildings", desc: "Rodzaj zabudowy" },
 				{ name: "farm_ownership", desc: "Tytuł prawny" },
-				{ name: "farm_income", desc: "Przychód i dochód" }
+				{ name: "farm_income", desc: "Przychód i dochód" },
 				{ name: "other_realestate", desc: "Inne nieruchomości" },
 				{ name: "stocks", desc: "Uczestniczę w spółce cywilnej lub osobowej..." },
 				{ name: "stocks_income", desc: "Z tego tytułu osiągnąłem w roku ubiegłym..." },
@@ -45,5 +46,5 @@ app.form_definition = {
 			]
 			
 		}
-]
+}
 
