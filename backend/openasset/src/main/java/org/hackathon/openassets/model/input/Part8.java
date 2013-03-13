@@ -1,5 +1,8 @@
 package org.hackathon.openassets.model.input;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Part8 {
 	private String public_company;
 	private String public_company_board;

@@ -1,5 +1,8 @@
 package org.hackathon.openassets.model.input;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Part5 {
 	private String stocks_government;
 	private String stocks_government_more_10_proc;

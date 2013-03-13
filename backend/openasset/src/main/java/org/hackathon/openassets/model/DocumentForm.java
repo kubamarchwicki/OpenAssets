@@ -2,8 +2,11 @@ package org.hackathon.openassets.model;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.hackathon.openassets.model.input.AssetesData;
 
+@XmlRootElement
 public class DocumentForm {
 
 	private String ep_object_id;
