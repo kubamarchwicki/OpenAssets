@@ -1,4 +1,4 @@
-package org.hackathon.openassets.dao;
+package org.hackathon.openassets.db.repository.mongodb;
 
 import com.mongodb.DBObject;
 

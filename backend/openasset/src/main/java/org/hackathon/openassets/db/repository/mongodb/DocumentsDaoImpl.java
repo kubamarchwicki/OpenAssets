@@ -1,6 +1,7 @@
-package org.hackathon.openassets.dao;
+package org.hackathon.openassets.db.repository.mongodb;
 
 import java.math.BigDecimal;
+
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;

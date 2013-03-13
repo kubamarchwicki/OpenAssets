@@ -1,9 +1,7 @@
-package org.hackathon.openassets.dao.mongoclient;
+package org.hackathon.openassets.db.repository.mongodb;
 
 import java.io.IOException;
 
-import org.hackathon.openassets.dao.DocumentsDao;
-import org.hackathon.openassets.dao.DocumentsDaoImpl;
 import org.hackathon.openassets.datagrabber.HtmlDocumentSnippetReader;
 
 import com.mongodb.DB;
