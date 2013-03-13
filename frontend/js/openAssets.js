@@ -8,7 +8,7 @@ angular.module('openAssets', ['ngResource']).
 function OpenAssetsCtrl($scope, $http) {
 
   retrieveImageInfo = function(){
-    return $http.get(window.location.pathname + 'examples/input.json');
+    return $http.get('examples/input.json');
   }   
  
   bindImageInfo = function(data, status, headers, config) {
