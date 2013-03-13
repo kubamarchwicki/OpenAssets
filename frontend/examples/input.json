@@ -2,8 +2,11 @@
 	"ep_object_id": "8757", 
 	"document_id": "124543",
 	"images": [
-		"examples/docimage1.jpg", 
-		"examples/docimage2.gif", 
-		"examples/docimage3.jpg"
+		{"id" :"page1", "url" : "http://epanstwo.net/docs/imgs/153743/153743001.png"},
+        {"id" :"page2", "url" : "http://epanstwo.net/docs/imgs/153743/153743003.png"},
+        {"id" :"page3", "url" : "http://epanstwo.net/docs/imgs/153743/153743002.png"},
+        {"id" :"page4", "url" : "http://epanstwo.net/docs/imgs/153743/153743004.png"},
+        {"id" :"page5", "url" : "http://epanstwo.net/docs/imgs/153743/153743005.png"},
+        {"id" :"page6", "url" : "http://epanstwo.net/docs/imgs/153743/153743006.png"}
 	]
 }

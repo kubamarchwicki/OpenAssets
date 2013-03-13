@@ -6,6 +6,7 @@ angular.module('openAssets', ['ngResource']).
   });
 
 function OpenAssetsCtrl($scope, $http) {
+
   retrieveImageInfo = function(){
     return $http.get(window.location.pathname + 'examples/input.json');
   }   
@@ -14,6 +15,7 @@ function OpenAssetsCtrl($scope, $http) {
     $scope.ep_object_id = data.ep_object_id;
     $scope.document_id = data.document_id;
     $scope.docimages = data.images;
+    $scope.form_definition = app.form_definition.page1;
   } 
   
   retrieveExampleOutput = function(){
