@@ -1,8 +1,7 @@
 package org.hackathon.openassets.services.rest;
 
-import java.util.List;
-
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,22 +13,16 @@ import org.hackathon.openassets.model.Document;
 public class DocumentService {
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Document> getDocuments() {
-		throw new RuntimeException("Not implemented yet.");
-	}
-
-	@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Document> getDocument(@PathParam("id") Long id) {
-		throw new RuntimeException("Not implemented yet.");
-	}
-
-	@GET
 	@Path("/random")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Document getRandomDocument() {
+		throw new RuntimeException("Not implemented yet.");
+	}
+
+	@POST
+	@Path("/{document}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Document updateDocument(@PathParam("document") Document document) {
 		throw new RuntimeException("Not implemented yet.");
 	}
 
