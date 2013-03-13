@@ -5,12 +5,12 @@
 
 	<servlet>
 		<servlet-name>OpenAssetsRESTService</servlet-name>
-		<!-- <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class> -->
-		<servlet-class>com.sun.jersey.server.impl.container.servlet.ServletAdaptor</servlet-class>
-		<!-- <init-param> -->
-		<!-- <param-name>com.sun.jersey.config.property.packages</param-name> -->
-		<!-- <param-value>org.hackathon.openassets.services.rest</param-value> -->
-		<!-- </init-param> -->
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<!-- <servlet-class>com.sun.jersey.server.impl.container.servlet.ServletAdaptor</servlet-class> -->
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>org.hackathon.openassets.services.rest</param-value>
+		</init-param>
 		<!-- <init-param> -->
 		<!-- <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name> -->
 		<!-- <param-value>true</param-value> -->
