@@ -35,7 +35,7 @@ public class DocumentService {
 	 * @return obiekt repozytorium
 	 */
 	protected DocumentRepository getDocRepo() {
-		// FIXME: Podaæ konkretn¹ klasê implementuj¹c¹
+		// FIXME: PodaÄ‡ konkretnÄ… klasÄ™ implementujÄ…cÄ…
 		return new RepositoryFactory()
 				.getDocumentRepository(DummyDocumentRepository.class);
 	}
