@@ -6,7 +6,7 @@ angular.module('openAssets', ['ngResource']).
   });
 
 function OpenAssetsCtrl($scope, $http) {
-  $http.get(window.location.pathname + 'examples/input.json').success(
+  $http.get('examples/input.json').success(
     function(data, status, headers, config) {
       $scope.ep_object_id = data.ep_object_id;
       $scope.document_id = data.document_id;
