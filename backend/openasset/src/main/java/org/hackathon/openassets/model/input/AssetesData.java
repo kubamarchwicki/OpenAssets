@@ -1,5 +1,8 @@
 package org.hackathon.openassets.model.input;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class AssetesData {
 
 	private String name;
@@ -152,7 +155,5 @@ public class AssetesData {
 	public void setCity_place(String city_place) {
 		this.city_place = city_place;
 	}
-	
-	
 
 }
