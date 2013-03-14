@@ -1,8 +1,8 @@
 package org.hackathon.openassets.business;
 
 import org.hackathon.openassets.db.repository.DocumentRepository;
-import org.hackathon.openassets.db.repository.DocumentRepositoryImpl;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
+import org.hackathon.openassets.db.repository.mongodb.DocumentRepositoryImpl;
 import org.hackathon.openassets.model.DocumentForm;
 
 /**
@@ -20,6 +20,7 @@ public class DocumentTranscriptionProcessor {
 		DocumentRepository repo = new RepositoryFactory()
 				.getDocumentRepository(DocumentRepositoryImpl.class);
 		// --1.Get document from repository by document_id from transcription--
+		DocumentForm document = repo.getById(transcription.getDocument_id());
 
 		// --2.Melt transcription data with document--
 
