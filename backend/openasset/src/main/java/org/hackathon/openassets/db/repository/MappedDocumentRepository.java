@@ -20,5 +20,7 @@ public interface MappedDocumentRepository {
 	 *            changed document
 	 */
 	public void update(MappedDocument document);
+	
+	public void save(MappedDocument document);
 
 }

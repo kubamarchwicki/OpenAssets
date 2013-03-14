@@ -1,32 +1,49 @@
-<body ng-controller="InitializeForms">
+<body ng-controller="InitializeForms" xmlns="http://www.w3.org/1999/html">
 
 
-	
-<form ng-submit="saveInput()">
-	<div class="row" ng-repeat="docimage in docimages">
-		<div class="span6 document-image">
-			<img ng-src="{{docimage.url}}"/>
-		</div>
-		
-		<div class="span4 document-form" style="clear:right">
-			<div ng-repeat="field in form_definition[docimage.id].fields">
-				 <label>{{field.desc}}</label>
-				 <input type="text" name="{{field.name}}" ng-model="userinput[field.name]"/>
+<div class="container">
+    <form ng-submit="saveInput()">
 
-			</div>
-		</div>	
 
-	</div>
+        <div class="pagination">
+            <ul>
+                <li><a href="#">Prev</a></li>
+                <li id="link_{{docimage_page.id}}" class="page_link" ng-repeat="docimage_page in docimages">
+                    <a href="" ng-click="page_selected(docimage_page.id)">{{$index+1}}</a>
+                </li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
 
-	<div class="row">
-		<div class="span12">
-			<input type="submit" value="Save">
-		</div>
-		
-	</div>
-	
-</form>	
+        <div ng-repeat="docimage in docimages" style="clear:right">
+            <div id="{{docimage.id}}"  class="document-container">
+                <div class="span6 document-image">
+                    <img ng-src="{{docimage.url}}"/>
+                </div>
 
+                <div class="span4 document-form" >
+                    <div ng-repeat="field in form_definition[docimage.id].fields">
+                        <label>{{field.desc}}</label>
+                        <input type="text" name="{{field.name}}" ng-model="userinput[field.name]"/>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="span12">
+                <input type="submit" value="Save">
+            </div>
+
+        </div>
+
+    </form>
+
+
+
+</div>
 
 
 </body>

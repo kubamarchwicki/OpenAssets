@@ -27,7 +27,7 @@ app.form_definition = {
 				{ name: "farm_ownership", desc: "Tytuł prawny" },
 				{ name: "farm_income", desc: "Przychód i dochód" },
 				{ name: "other_realestate", desc: "Inne nieruchomości" },
-				{ name: "stocks", desc: "Uczestniczę w spółce cywilnej lub osobowej..." },
+				{ name: "stocks_participation", desc: "Uczestniczę w spółce cywilnej lub osobowej..." },
 				{ name: "stocks_income", desc: "Z tego tytułu osiągnąłem w roku ubiegłym..." },
 				{ name: "stocks_government", desc: "Posiadam udziały w spółce handlowej z udziałem państwowych..." }
 			]
@@ -49,7 +49,7 @@ app.form_definition = {
 			
 		},
 		page4: {
-	        field: [
+	        fields: [
 	            {name: "self_employment", desc: "Prowadzę działalność gospodarczą (należy podać formę prawną i przedmiot działalności)"},
 	            {name: "self_employment_personal", desc: "osobiście"},
 	            {name: "self_employment_with_others", desc: "wspólnie z innymi osobami"},
@@ -67,7 +67,7 @@ app.form_definition = {
 	    },
 
 	    page5: {
-	        field: [
+	        fields: [
 	            {name: "foundation", desc: "W fundacjach i stowarzyszeniach prowadzących działalność gospodarczą"},
 	            {name: "foundation_board", desc: "jestem członkiem zarządu (od kiedy)"},
 	            {name: "foundation_directors", desc: "jestem członkiem rady nadzorczej (od kiedy)"},
@@ -79,7 +79,7 @@ app.form_definition = {
 	    },
 
 	    page6: {
-	        field: [
+	        fields: [
 	            {name: "liabilities", desc: "Zobowiązania pieniężne o wartości powyżej 10 000 zł"}
 	        ]
 	    }

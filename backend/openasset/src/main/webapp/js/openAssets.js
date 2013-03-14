@@ -7,6 +7,14 @@ angular.module('openAssets', ['ngResource']).
 
 function OpenAssetsCtrl($scope, $http) {
 
+   var selectPage = function(page_id) {
+        $(".document-container").hide();
+        $(".page_link").removeClass("active");
+        $("#link_"+page_id).addClass("active");
+        $("#"+page_id).show();
+   }
+
+
   retrieveImageInfo = function(){
     return $http.get('rest/document/random');
   }   
@@ -25,7 +33,7 @@ function OpenAssetsCtrl($scope, $http) {
   }
   
   postDocument = function(document){
-    return $http.post('rest/document/', document);
+    return $http.post('rest/transcription/', document);
   }
   
   documentUpdateSuccesfull = function(data, status, headers, config) {
@@ -36,15 +44,16 @@ function OpenAssetsCtrl($scope, $http) {
     console.warn("Document not updated - Statuscode: " + status);
   }
   
-  updateDocument =  function(data, status, headers, config) {
-    postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);
-  }
-  
   $scope.saveInput = function(){
-    retrieveExampleOutput().success(updateDocument);
+    postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);
   };
-  
-   retrieveImageInfo().success(bindImageInfo);
+
+  $scope.page_selected = selectPage;
+
+
+  retrieveImageInfo().success(bindImageInfo);
+
+  selectPage("page1");
 }
 
 
