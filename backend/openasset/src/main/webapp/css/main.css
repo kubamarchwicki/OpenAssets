@@ -1,9 +1,23 @@
+body {
+	/* fallback */
+	background-color: #efefff;
+	background-repeat: repeat-x; 
+	/* Safari 4-5, Chrome 1-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e5e5ff), to(#fff));
+	/* Safari 5.1, Chrome 10+ */
+	background: -webkit-linear-gradient(top, #efefff, #fff);
+	/* Firefox 3.6+ */
+	background: -moz-linear-gradient(top, #efefff, #fff);
+	 /* IE 10 */
+	background: -ms-linear-gradient(top, #efefff, #fff);
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(top, #efefff, #fff);
+}
+
 .document-image {
 	background-color: #ffeeee;
-
 }
 
 .document-form {
 	background-color: #eeffee;
-
 }
