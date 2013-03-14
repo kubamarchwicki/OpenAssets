@@ -25,9 +25,12 @@ function OpenAssetsCtrl($scope, $http) {
  }
 
   bindImageInfo = function(data, status, headers, config) {
-    $scope.document_id = data.document_id;
     $scope.docimages = wrapdocuments(data.images);
     $scope.form_definition = app.form_definition;
+    $scope.userinput = {
+      'document_id' : data.document_id,
+      'ep_object_id' : data.ep_object_id
+    };
   } 
 
 

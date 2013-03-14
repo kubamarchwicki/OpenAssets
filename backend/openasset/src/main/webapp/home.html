@@ -11,7 +11,7 @@
 		<div class="span4 document-form" style="clear:right">
 			<div ng-repeat="field in form_definition[docimage.id].fields">
 				 <label>{{field.desc}}</label>
-				 <input type="text" name="{{field.name}}"/>
+				 <input type="text" name="{{field.name}}" ng-model="userinput[field.name]"/>
 
 			</div>
 		</div>	
