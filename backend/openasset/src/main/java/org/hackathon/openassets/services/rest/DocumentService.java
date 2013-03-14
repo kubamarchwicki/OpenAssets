@@ -1,6 +1,8 @@
 package org.hackathon.openassets.services.rest;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -23,14 +25,15 @@ public class DocumentService {
 		return repository.getRandomIncomplete();
 	}
 
-	// @POST
-	// @Path("/{document}")
-	// @Consumes(MediaType.APPLICATION_JSON)
-	// public void updateDocument(@PathParam("document") DocumentForm document)
-	// {
-	public void updateDocument(DocumentForm document) {
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public int updateDocument(DocumentForm form) {
+		System.out.println("Recieved object: " + form.getDocument_id());
 		DocumentRepository repository = getDocRepo();
-		repository.update(document);
+		repository.update(form);
+		// throw new DatabaseError();
+		return 0;
 	}
 
 	/**
