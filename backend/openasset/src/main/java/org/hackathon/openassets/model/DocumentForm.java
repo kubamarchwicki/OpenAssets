@@ -41,4 +41,12 @@ public class DocumentForm {
 		this.document_id = document_id;
 	}
 
+	public void setAssets_data(AssetesData assets_data) {
+		this.assets_data = assets_data;
+	}
+
+	public AssetesData getAssets_data() {
+		return assets_data;
+	}
+
 }

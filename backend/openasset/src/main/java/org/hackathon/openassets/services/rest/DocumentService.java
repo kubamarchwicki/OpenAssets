@@ -8,9 +8,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.hackathon.openassets.db.repository.DocumentRepository;
+import org.hackathon.openassets.db.repository.DocumentRepositoryImpl;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
-import org.hackathon.openassets.db.repository.dummy.DummyDocumentRepository;
 import org.hackathon.openassets.model.DocumentForm;
+
+
 
 @Path("document")
 public class DocumentService {
@@ -38,8 +40,7 @@ public class DocumentService {
 	 * @return obiekt repozytorium
 	 */
 	protected DocumentRepository getDocRepo() {
-		// FIXME: Podać konkretną klasę implementującą
 		return new RepositoryFactory()
-				.getDocumentRepository(DummyDocumentRepository.class);
+				.getDocumentRepository(DocumentRepositoryImpl.class);
 	}
 }
