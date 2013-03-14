@@ -10,29 +10,15 @@ function OpenAssetsCtrl($scope, $http) {
   retrieveImageInfo = function(){
     return $http.get('rest/document/random');
   }   
-
- var wrapdocuments = function(documenturls) {
-     var tempresult = [];
-     var counter = 1;
-     documenturls.forEach(function(url) {
-         tempresult.push({
-             id: "page"+counter,
-             url: url
-         });
-         counter++;
-     });;
-     return tempresult;
- }
-
+  
   bindImageInfo = function(data, status, headers, config) {
-    $scope.docimages = wrapdocuments(data.images);
+    $scope.docimages = data.images;
     $scope.form_definition = app.form_definition;
     $scope.userinput = {
       'document_id' : data.document_id,
       'ep_object_id' : data.ep_object_id
     };
   } 
-
 
   retrieveExampleOutput = function(){
     return $http.get('examples/output.json');
