@@ -7,6 +7,8 @@ angular.module('openAssets', ['ngResource']).
 
 function OpenAssetsCtrl($scope, $http) {
 
+
+
   retrieveImageInfo = function(){
     return $http.get('rest/document/random');
   }   
@@ -43,6 +45,11 @@ function OpenAssetsCtrl($scope, $http) {
   $scope.saveInput = function(){
     retrieveExampleOutput().success(updateDocument);
   };
+
+  $scope.page_selected = function(page_id) {
+    $(".document-container").hide();
+    $("#"+page_id).show();
+   }
   
    retrieveImageInfo().success(bindImageInfo);
 }
