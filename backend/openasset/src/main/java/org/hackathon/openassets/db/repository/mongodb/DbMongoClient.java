@@ -7,18 +7,29 @@ import com.mongodb.MongoClientURI;
 
 public class DbMongoClient {
 
-	private final DocumentsDao documentsDao;
+	private DocumentsDao documentsDao;
+	
+	private MappedDocumentDao mappedDocumentsDao;
+	
+	final DB database;
 
 
 	public DocumentsDao getDocumentsDao() {
+		documentsDao = new DocumentsDaoImpl(database);
 		return documentsDao;
 	}
 
 	public DbMongoClient(String mongoURIString) throws IOException {
 		final MongoClient mongoClient = new MongoClient(new MongoClientURI(
 				mongoURIString));
-		final DB database = mongoClient.getDB("hackaton");
-		documentsDao = new DocumentsDaoImpl(database);
+			database = mongoClient.getDB("hackaton");
+		
+	}
+
+
+	public MappedDocumentDao getMappedDocumentsDao() {
+		mappedDocumentsDao = new MappedDocumentDaoImpl(database);
+		return mappedDocumentsDao;
 	}
 
 }

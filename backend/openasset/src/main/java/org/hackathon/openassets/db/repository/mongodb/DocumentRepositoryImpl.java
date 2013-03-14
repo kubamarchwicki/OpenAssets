@@ -9,6 +9,8 @@ import org.hackathon.openassets.db.repository.DocumentRepository;
 import org.hackathon.openassets.model.DbObjectIdPair;
 import org.hackathon.openassets.model.DocumentForm;
 
+import com.mongodb.DBObject;
+
 public class DocumentRepositoryImpl implements DocumentRepository {
 
 	@Override
@@ -52,16 +54,45 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 	}
 
 	@Override
+	/**
+	 * Mark document as trusted = yes in initial repository
+	 */
 	public void update(DocumentForm document) {
-		// TODO Auto-generated method stub
-		// TODO: Requires implementation.
-
+		documentsDao.updateDocument(document);
 	}
 
 	@Override
 	public DocumentForm getById(String documentId) {
-		// TODO: Requires implementation.
-		throw new RuntimeException("Not implemented yet.");
+		DocumentForm documentForm = new DocumentForm();
+		DBObject object = documentsDao.findDocument(documentId);
+
+		if (object != null) {
+			Long documnetId = null;
+			try {
+				documnetId = Long.parseLong((String) object.get("dokument_id"));
+			} catch (NumberFormatException e) {
+				System.out.println("Document id not found in DB!");
+			}
+
+			Long epObjectId = null;
+			try {
+				epObjectId = Long
+						.parseLong((String) object.get("ep_object_id"));
+			} catch (NumberFormatException e) {
+				System.out.println("Ep object id not found in DB!");
+			}
+
+			if (documnetId != null && epObjectId != null) {
+				List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
+						.getImageUrls(documnetId);
+				documentForm.setImages(imagesUrlList);
+				documentForm.setDocument_id(documentId.toString());
+				documentForm.setEp_object_id(epObjectId.toString());
+
+			}
+		}
+		return documentForm;
+
 	}
 
 }
