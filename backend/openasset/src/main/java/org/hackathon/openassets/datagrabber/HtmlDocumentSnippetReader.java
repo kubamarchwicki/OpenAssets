@@ -53,6 +53,7 @@ public class HtmlDocumentSnippetReader {
 						image.setId("page"+pageCounter);
 						image.setUrl(m.group(2));
 						matches.add(image);
+						pageCounter++;
 					}
 				}
 
