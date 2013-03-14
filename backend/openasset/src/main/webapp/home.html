@@ -8,8 +8,8 @@
         <div class="pagination">
             <ul>
                 <li><a href="#">Prev</a></li>
-                <li ng-repeat="docimage in docimages">
-                    <a href="" ng-click="page_selected(docimage.id)">{{$index+1}}</a>
+                <li id="link_{{docimage_page.id}}" class="page_link" ng-repeat="docimage_page in docimages">
+                    <a href="" ng-click="page_selected(docimage_page.id)">{{$index+1}}</a>
                 </li>
                 <li><a href="#">Next</a></li>
             </ul>

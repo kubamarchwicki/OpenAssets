@@ -7,6 +7,12 @@ angular.module('openAssets', ['ngResource']).
 
 function OpenAssetsCtrl($scope, $http) {
 
+   var selectPage = function(page_id) {
+        $(".document-container").hide();
+        $(".page_link").removeClass("active");
+        $("#link_"+page_id).addClass("active");
+        $("#"+page_id).show();
+   }
 
 
   retrieveImageInfo = function(){
@@ -46,12 +52,12 @@ function OpenAssetsCtrl($scope, $http) {
     retrieveExampleOutput().success(updateDocument);
   };
 
-  $scope.page_selected = function(page_id) {
-    $(".document-container").hide();
-    $("#"+page_id).show();
-   }
-  
-   retrieveImageInfo().success(bindImageInfo);
+  $scope.page_selected = selectPage;
+
+
+  retrieveImageInfo().success(bindImageInfo);
+
+  selectPage("page1");
 }
 
 
