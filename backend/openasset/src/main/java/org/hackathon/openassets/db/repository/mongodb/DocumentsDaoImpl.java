@@ -82,4 +82,10 @@ public class DocumentsDaoImpl implements DocumentsDao {
 		}
 	}
 
+	@Override
+	public boolean updateInvalid(DBObject obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

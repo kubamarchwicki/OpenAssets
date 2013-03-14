@@ -10,19 +10,36 @@ function OpenAssetsCtrl($scope, $http) {
   retrieveImageInfo = function(){
     return $http.get('rest/document/random');
   }   
- 
+
+ var wrapdocuments = function(documenturls) {
+     var tempresult = [];
+     var counter = 1;
+     documenturls.forEach(function(url) {
+         tempresult.push({
+             id: "page"+counter,
+             url: url
+         });
+         counter++;
+     });;
+     return tempresult;
+ }
+
   bindImageInfo = function(data, status, headers, config) {
-    $scope.document_id = data.document_id;
-    $scope.docimages = data.images;
+    $scope.docimages = wrapdocuments(data.images);
     $scope.form_definition = app.form_definition;
+    $scope.userinput = {
+      'document_id' : data.document_id,
+      'ep_object_id' : data.ep_object_id
+    };
   } 
-  
+
+
   retrieveExampleOutput = function(){
     return $http.get('examples/output.json');
   }
   
   postDocument = function(document){
-    return $http.post(window.location.pathname + 'result', document);
+    return $http.post('rest/document/', document);
   }
   
   documentUpdateSuccesfull = function(data, status, headers, config) {
@@ -34,7 +51,7 @@ function OpenAssetsCtrl($scope, $http) {
   }
   
   updateDocument =  function(data, status, headers, config) {
-    postDocument(data).success(documentUpdateSuccesfull).error(documentUpdateError);
+    postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);
   }
   
   $scope.saveInput = function(){

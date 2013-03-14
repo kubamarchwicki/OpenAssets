@@ -24,7 +24,7 @@ public class HtmlDocumentSnippetReader {
 	 * @param documentId - document identifier
 	 * @return list of image urls or null if error occurs
 	 */
-	public static List<String> getImageUrls(Long documentId) {
+	public static List<ImageNode> getImageUrls(Long documentId) {
 
 		try {
 			String urlStr = "http://epanstwo.net/docs/snippets/{dokument_id}.html";
@@ -40,16 +40,19 @@ public class HtmlDocumentSnippetReader {
 				 final String regex = "src=(['\"])" // the ' or the " is in group 1
 		              + "(.*?)" // match any character in a non-greedy fashion
 		              + "\\1"; // closes with the quote that is in group 1
-				List<String> matches = new ArrayList<String>();
+				List<ImageNode> matches = new ArrayList<ImageNode>();
 				Pattern p = Pattern.compile(regex);
 				Matcher m = null;
-
+				int pageCounter =1;
 				String inputLine;
 				while ((inputLine = in.readLine()) != null) {
 					m = p.matcher(inputLine);
 					while (m.find()) {
 						//matches.add(m.group(1));
-						matches.add(m.group(2));
+						ImageNode image =new ImageNode();
+						image.setId("page"+pageCounter);
+						image.setUrl(m.group(2));
+						matches.add(image);
 					}
 				}
 
