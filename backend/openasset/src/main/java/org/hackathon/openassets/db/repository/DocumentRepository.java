@@ -3,7 +3,7 @@ package org.hackathon.openassets.db.repository;
 import org.hackathon.openassets.model.DocumentForm;
 
 /**
- * Repozytorium dokumentów.
+ * Repozytorium dokumentÃ³w.
  * 
  */
 public interface DocumentRepository {
