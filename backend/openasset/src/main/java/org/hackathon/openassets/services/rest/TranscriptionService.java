@@ -8,6 +8,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.hackathon.openassets.business.DocumentTranscriptionProcessor;
+import org.hackathon.openassets.business.SimpleSentenceComparator;
 import org.hackathon.openassets.db.repository.MappedDocumentRepository;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
 import org.hackathon.openassets.model.DocumentForm;
@@ -29,8 +31,11 @@ public class TranscriptionService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateDocument(DocumentForm form) {
 		System.out.println("Recieved object: " + form.getDocument_id());
-		// MappedDocumentRepository repository = getDocRepo();
-		// repository.update(form);
+		MappedDocumentRepository repo = getDocRepo();
+		MappedDocument document = repo.getById(form.getDocument_id());
+		new DocumentTranscriptionProcessor().processTranscription(document,
+				form, new SimpleSentenceComparator());
+		repo.update(document);
 	}
 
 	/**

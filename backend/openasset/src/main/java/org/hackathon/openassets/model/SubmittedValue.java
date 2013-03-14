@@ -9,6 +9,16 @@ public class SubmittedValue {
 		private String text;
 		private Integer validLevel;
 
+		public TranscriptionText() {
+			text = "";
+			validLevel = Integer.valueOf(0);
+		}
+
+		public TranscriptionText(String text) {
+			this.text = text;
+			validLevel = Integer.valueOf(0);
+		}
+
 		public String getText() {
 			return text;
 		}

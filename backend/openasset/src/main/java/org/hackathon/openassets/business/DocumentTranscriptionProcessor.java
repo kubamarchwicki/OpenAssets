@@ -3,11 +3,14 @@ package org.hackathon.openassets.business;
 import org.hackathon.openassets.model.DocumentForm;
 import org.hackathon.openassets.model.MappedDocument;
 import org.hackathon.openassets.model.SubmittedValue;
+import org.hackathon.openassets.model.SubmittedValue.TranscriptionText;
 
 /**
  * Handles document transcriptions, submitted by users.
  */
 public class DocumentTranscriptionProcessor {
+
+	private SimpleSentenceComparator comparator;
 
 	/**
 	 * Updates provided mapped document with given transcription using provided
@@ -20,6 +23,8 @@ public class DocumentTranscriptionProcessor {
 	 */
 	public void processTranscription(MappedDocument document,
 			DocumentForm transcription, SimpleSentenceComparator comparator) {
+		this.comparator = comparator;
+
 		updateTranscriptions(document.getName(), transcription.getName());
 		updateTranscriptions(document.getDate_of_birth(),
 				transcription.getDate_of_birth());
@@ -131,7 +136,15 @@ public class DocumentTranscriptionProcessor {
 
 	public void updateTranscriptions(SubmittedValue fieldTranscription,
 			String transcription) {
-		//
+		TranscriptionText transcriptionTxt = new TranscriptionText(
+				transcription);
+		for (TranscriptionText txt : fieldTranscription.getSubmittedValues()) {
+			if (comparator.compare(txt.getText(), transcription)) {
+				txt.setValidLevel(txt.getValidLevel() + 1);
+				transcriptionTxt
+						.setValidLevel(transcriptionTxt.getValidLevel() + 1);
+			}
+		}
+		fieldTranscription.getSubmittedValues().add(transcriptionTxt);
 	}
-
 }
