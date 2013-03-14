@@ -1,12 +1,15 @@
 package org.hackathon.openassets.db.repository.mongodb;
 
 import org.hackathon.openassets.model.DbObjectIdPair;
+import org.hackathon.openassets.model.DocumentForm;
 
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 
 public class DocumentsDaoImpl implements DocumentsDao {
 
@@ -76,6 +79,7 @@ public class DocumentsDaoImpl implements DocumentsDao {
 			return randomDocumentIdPair;
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("Getting random incomplete document failed!");
 			return randomDocumentIdPair;
 		} finally {
 			cursor.close();
@@ -86,6 +90,19 @@ public class DocumentsDaoImpl implements DocumentsDao {
 	public boolean updateInvalid(DBObject obj) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void updateDocument(DocumentForm obj) {
+		try {
+			BasicDBObject findQuery = new BasicDBObject("dokument_id",obj.getDocument_id()).append("ep_object_id", obj.getEp_object_id());
+			DBObject objectToUpdate = documentsCollection.findOne(findQuery);
+			objectToUpdate.put("trusted", "yes");
+			documentsCollection.update(findQuery, objectToUpdate);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Document update failed!");
+		}
 	}
 
 }
