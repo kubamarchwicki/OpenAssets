@@ -8,6 +8,6 @@ public interface DocumentsDao {
 
 	public DBObject findDocument(String documentId);
 	public DbObjectIdPair getRandomIncompleteDocumentId();
-	
+	public boolean updateInvalid(DBObject obj);
 		
 }

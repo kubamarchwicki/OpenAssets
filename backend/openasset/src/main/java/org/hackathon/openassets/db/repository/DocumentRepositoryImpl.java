@@ -1,8 +1,10 @@
 package org.hackathon.openassets.db.repository;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.hackathon.openassets.datagrabber.HtmlDocumentSnippetReader;
+import org.hackathon.openassets.datagrabber.ImageNode;
 import org.hackathon.openassets.db.repository.mongodb.DbMongoClient;
 import org.hackathon.openassets.db.repository.mongodb.DocumentsDao;
 import org.hackathon.openassets.model.DbObjectIdPair;
@@ -23,8 +25,10 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 		} catch (NumberFormatException e) {
 			System.out.println("Document id not found in DB!");
 		}
-		documentForm.setImages(HtmlDocumentSnippetReader
-				.getImageUrls(randomIncompleteDocumentId));
+		
+		List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
+		.getImageUrls(randomIncompleteDocumentId);
+		documentForm.setImages(imagesUrlList);
 		documentForm.setDocument_id(randomInclompleteDocumentIdPair
 				.getDocument_id());
 		documentForm.setEp_object_id(randomInclompleteDocumentIdPair
