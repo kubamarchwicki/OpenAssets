@@ -33,14 +33,6 @@ public class DocumentService {
 		return repository.getRandomIncomplete();
 	}
 
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateDocument(DocumentForm form) {
-		System.out.println("Recieved object: " + form.getDocument_id());
-		DocumentRepository repository = getDocRepo();
-		repository.update(form);
-	}
-
 	/**
 	 * @return repository object
 	 */
