@@ -25,7 +25,7 @@ function OpenAssetsCtrl($scope, $http) {
   }
   
   postDocument = function(document){
-    return $http.post('rest/document/', document);
+    return $http.post('rest/transcription/', document);
   }
   
   documentUpdateSuccesfull = function(data, status, headers, config) {
