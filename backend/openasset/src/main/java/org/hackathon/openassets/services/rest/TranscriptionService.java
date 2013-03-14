@@ -12,6 +12,7 @@ import org.hackathon.openassets.business.DocumentTranscriptionProcessor;
 import org.hackathon.openassets.business.SimpleSentenceComparator;
 import org.hackathon.openassets.db.repository.MappedDocumentRepository;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
+import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepositoryImpl;
 import org.hackathon.openassets.model.DocumentForm;
 import org.hackathon.openassets.model.MappedDocument;
 
@@ -49,6 +50,6 @@ public class TranscriptionService {
 	 */
 	protected MappedDocumentRepository getDocRepo() {
 		return new RepositoryFactory()
-				.getMappedDocumentRepository(MappedDocumentRepository.class);
+				.getMappedDocumentRepository(MappedDocumentRepositoryImpl.class);
 	}
 }
