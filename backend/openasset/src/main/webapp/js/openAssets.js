@@ -39,7 +39,7 @@ function OpenAssetsCtrl($scope, $http) {
   }
   
   postDocument = function(document){
-    return $http.post(window.location.pathname + 'result', document);
+    return $http.post('rest/document/', document);
   }
   
   documentUpdateSuccesfull = function(data, status, headers, config) {
@@ -51,7 +51,7 @@ function OpenAssetsCtrl($scope, $http) {
   }
   
   updateDocument =  function(data, status, headers, config) {
-    postDocument(data).success(documentUpdateSuccesfull).error(documentUpdateError);
+    postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);
   }
   
   $scope.saveInput = function(){
