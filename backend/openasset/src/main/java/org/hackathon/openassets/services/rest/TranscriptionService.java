@@ -16,6 +16,8 @@ import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepositoryIm
 import org.hackathon.openassets.model.DocumentForm;
 import org.hackathon.openassets.model.MappedDocument;
 
+import com.google.gson.Gson;
+
 @Path("transcription")
 public class TranscriptionService {
 
@@ -36,6 +38,7 @@ public class TranscriptionService {
 		MappedDocument document = repo.getById(form.getDocument_id());
 		boolean newDocument = false;
 		if (null == document) {
+			System.out.println("We have a new document :D");
 			newDocument = true;
 			document = new MappedDocument();
 			document.setTrusted("no");
@@ -44,10 +47,18 @@ public class TranscriptionService {
 		}
 		new DocumentTranscriptionProcessor().processTranscription(document,
 				form, new SimpleSentenceComparator());
-		if (newDocument)
+		System.out.println("################################################");
+		System.out.println("# Its just for sure ignore another couple lines");
+		System.out.println("################################################");
+		System.out.println(new Gson().toJson(document));
+		System.out.println("################################################");
+		if (newDocument) {
+			System.out.println("Saving new document");
 			repo.save(document);
-		else
+		} else {
+			System.out.println("Updating document");
 			repo.update(document);
+		}
 	}
 
 	/**

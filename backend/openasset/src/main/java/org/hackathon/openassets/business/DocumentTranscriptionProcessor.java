@@ -169,11 +169,15 @@ public class DocumentTranscriptionProcessor {
 		}
 
 		if (null == fieldTranscription) {
+			System.out.println("Processing document: found new field "
+					+ fieldName);
 			fieldTranscription = new SubmittedValue();
 			fieldTranscription.setField_name(fieldName);
 			fieldTranscription.setTrusted("no");
 		}
 		if (null == fieldTranscription.getSubmittedValues()) {
+			System.out.println("Processing document: field " + fieldName
+					+ " don't have any transcriptions yet");
 			fieldTranscription
 					.setSubmittedValues(new LinkedList<SubmittedValue.TranscriptionText>());
 		}
@@ -182,6 +186,9 @@ public class DocumentTranscriptionProcessor {
 				transcription);
 		for (TranscriptionText txt : fieldTranscription.getSubmittedValues()) {
 			if (comparator.compare(txt.getText(), transcription)) {
+				System.out
+						.println("Processing document: found matching transcription for field "
+								+ fieldName);
 				txt.setValidLevel(txt.getValidLevel() + 1);
 				transcriptionTxt
 						.setValidLevel(transcriptionTxt.getValidLevel() + 1);
