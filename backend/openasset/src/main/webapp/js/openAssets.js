@@ -36,12 +36,8 @@ function OpenAssetsCtrl($scope, $http) {
     console.warn("Document not updated - Statuscode: " + status);
   }
   
-  updateDocument =  function(data, status, headers, config) {
-    postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);
-  }
-  
   $scope.saveInput = function(){
-    retrieveExampleOutput().success(updateDocument);
+    postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);
   };
   
    retrieveImageInfo().success(bindImageInfo);
