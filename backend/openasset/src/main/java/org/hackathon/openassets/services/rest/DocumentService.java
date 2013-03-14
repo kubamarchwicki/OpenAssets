@@ -37,7 +37,7 @@ public class DocumentService {
 	}
 
 	/**
-	 * @return obiekt repozytorium
+	 * @return repository object
 	 */
 	protected DocumentRepository getDocRepo() {
 		return new RepositoryFactory()

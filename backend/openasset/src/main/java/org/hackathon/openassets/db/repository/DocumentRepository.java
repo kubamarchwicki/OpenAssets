@@ -3,21 +3,21 @@ package org.hackathon.openassets.db.repository;
 import org.hackathon.openassets.model.DocumentForm;
 
 /**
- * Repozytorium dokumentów.
+ * Document repository.
  * 
  */
 public interface DocumentRepository {
 
 	/**
-	 * @return Zwraca losowy niekompletny dokument.
+	 * @return random incomplete document
 	 */
 	public DocumentForm getRandomIncomplete();
 
 	/**
-	 * Utrwala zmiany w dokumencie.
+	 * Persists changes in document.
 	 * 
 	 * @param document
-	 *            Zmieniony dokument
+	 *            changed document
 	 */
 	public void update(DocumentForm document);
 
