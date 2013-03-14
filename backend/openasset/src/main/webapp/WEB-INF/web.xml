@@ -17,6 +17,15 @@
 		<!-- </init-param> -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<!-- Override init parameter to avoid nasty file locking issue on windows. -->
+		<!-- See also https://www.assembla.com/spaces/liftweb/wiki/Fix_file_locking_problem_with_jettyrun -->
+		<servlet-name>default</servlet-name>
+		<init-param>
+			<param-name>useFileMappedBuffer</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>OpenAssetsRESTService</servlet-name>
