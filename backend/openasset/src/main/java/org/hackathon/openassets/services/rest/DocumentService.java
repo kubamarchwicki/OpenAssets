@@ -12,8 +12,6 @@ import org.hackathon.openassets.db.repository.DocumentRepositoryImpl;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
 import org.hackathon.openassets.model.DocumentForm;
 
-
-
 @Path("document")
 public class DocumentService {
 
@@ -27,17 +25,17 @@ public class DocumentService {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public int updateDocument(DocumentForm form) {
+	// @Produces(MediaType.APPLICATION_JSON)
+	public void updateDocument(DocumentForm form) {
 		System.out.println("Recieved object: " + form.getDocument_id());
 		DocumentRepository repository = getDocRepo();
 		repository.update(form);
 		// throw new DatabaseError();
-		return 0;
+		// return 0;
 	}
 
 	/**
-	 * @return obiekt repozytorium
+	 * @return repository object
 	 */
 	protected DocumentRepository getDocRepo() {
 		return new RepositoryFactory()
