@@ -1,5 +1,7 @@
 package org.hackathon.openassets.business;
 
+import org.hackathon.openassets.model.SubmittedValue;
+
 public class SimpleSentenceComparator {
 
 	/**
