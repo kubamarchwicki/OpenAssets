@@ -33,6 +33,12 @@ public class TranscriptionService {
 		System.out.println("Recieved object: " + form.getDocument_id());
 		MappedDocumentRepository repo = getDocRepo();
 		MappedDocument document = repo.getById(form.getDocument_id());
+		if (null == document) {
+			document = new MappedDocument();
+			document.setTrusted("no");
+			document.setEp_object_id(form.getEp_object_id());
+			document.setDocument_id(form.getDocument_id());
+		}
 		new DocumentTranscriptionProcessor().processTranscription(document,
 				form, new SimpleSentenceComparator());
 		repo.update(document);
