@@ -14,7 +14,7 @@ function OpenAssetsCtrl($scope, $http) {
   bindImageInfo = function(data, status, headers, config) {
     $scope.document_id = data.document_id;
     $scope.docimages = data.images;
-    $scope.form_definition = app.form_definition.page1;
+    $scope.form_definition = app.form_definition;
   } 
   
   retrieveExampleOutput = function(){

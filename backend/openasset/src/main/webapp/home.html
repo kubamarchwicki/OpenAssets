@@ -1,44 +1,32 @@
 <body ng-controller="InitializeForms">
 
-	<div class="row">
 
+	
+<form ng-submit="saveInput()">
+	<div class="row" ng-repeat="docimage in docimages">
+		<div class="span6 document-image">
+			<img ng-src="{{docimage.url}}"/>
+		</div>
+		
+		<div class="span4 document-form" style="clear:right">
+			<div ng-repeat="field in form_definition[docimage.id].fields">
+				 <label>{{field.desc}}</label>
+				 <input type="text" name="{{field.name}}"/>
 
-
-		<div class="span12" ng-repeat="docimage in docimages">
-			<div class="span6 document-image">
-				<img ng-src="{{docimage}}"/>
 			</div>
-			
-			<div class="span4 document-form">
-				<div ng-repeat="field in form_definition.fields">
-					 <label>{{field.desc}}</label>
-					 <input type="text" name="{{field.name}}"/>
-				</div>
-			</div>		
-			
-			
+		</div>	
 
-		</div>
-
-		<div class="span6 document-form">
-			<form ng-submit="saveInput()">
-				<div ng-repeat="field in form_definition">
-					<div class="span2">
-						{{field.desc}}
-					</div>
-					<div class="span3">
-						 <input type="text" name="{{field.name}}"/>
-					</div>
-					
-				</div>
-				<div class="span6">
-					<input type="submit" value="Save">
-				</div>
-
-				
-			</form>
-		</div>
 	</div>
+
+	<div class="row">
+		<div class="span12">
+			<input type="submit" value="Save">
+		</div>
+		
+	</div>
+	
+</form>	
+
 
 
 </body>

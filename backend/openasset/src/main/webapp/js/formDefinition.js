@@ -11,13 +11,15 @@ app.form_definition = {
 				{ name: "cash_other", desc: "Środki pieniężne zgromadzone w walucie obcej" }, 
 				{ name: "stocks", desc: "Papiery wartościowe" },
 				{ name: "house_area", desc: "Dom o powierzchni" },
-				{ name: "house_value", desc: "Wartość mieszkania" },
+				{ name: "house_value", desc: "O wartości" },
 				{ name: "house_ownership", desc: "Tytuł prawny" }
 			]
 		},
 		page2: {
 			fields: [
-				
+				{ name: "flat_area", desc: "Mieszkanie	 o powierzchni" },
+				{ name: "flat_value", desc: "O wartości" },
+				{ name: "flat_ownership", desc: "Tytuł prawny" },
 				{ name: "farm_type", desc: "Rodzaj gospodarstwa" },
 				{ name: "farm_area", desc: "Powierzchnia" },
 				{ name: "farm_value", desc: "Wartość" },
