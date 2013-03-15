@@ -12,7 +12,7 @@ public class SimpleSentenceComparator {
 	 * @return {@code true} if strings are equals, else {@code false}
 	 */
 	public boolean compare(String first, String second) {
-		if (first == null || second != null) {
+		if (first == null || second == null) {
 			throw new NullPointerException("Compared strings can't be null.");
 		}
 		return 0 == first.compareToIgnoreCase(second);
