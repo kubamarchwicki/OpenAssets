@@ -298,8 +298,11 @@ public class DocumentTranscriptionProcessor {
 
 		TranscriptionText transcriptionTxt = new TranscriptionText(
 				transcription);
+		String winner = null;
+		Integer winnerPoints = Integer.valueOf(0);
 		for (TranscriptionText txt : fieldTranscription.getSubmittedValues()) {
-			if (comparator.compare(txt.getText(), transcription)) {
+			if (txt.getText() != null
+					&& comparator.compare(txt.getText(), transcription)) {
 				System.out
 						.println("Processing document: found matching transcription for field "
 								+ fieldName);
