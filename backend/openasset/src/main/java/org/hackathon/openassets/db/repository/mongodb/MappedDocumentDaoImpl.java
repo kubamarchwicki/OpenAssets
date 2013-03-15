@@ -20,13 +20,13 @@ public class MappedDocumentDaoImpl implements MappedDocumentDao {
 	public DBObject findDocument(String documentId) {
 		DBObject document = null;
 
-		BasicDBObject query = new BasicDBObject("dokument_id", documentId);
+		BasicDBObject query = new BasicDBObject("document_id", documentId);
 
 		System.out.println(query);
 		document = mappedDocumentCollection.findOne(query);
 
 		if (document == null) {
-			System.out.println("Document not in database");
+			//System.out.println("Document not in database");
 			return null;
 		}
 
@@ -49,7 +49,7 @@ public class MappedDocumentDaoImpl implements MappedDocumentDao {
 		if (document != null) {
 			Gson gson = new Gson();
 			String json = gson.toJson(document);
-			BasicDBObject findQuery = new BasicDBObject("dokument_id",
+			BasicDBObject findQuery = new BasicDBObject("document_id",
 					document.getDocument_id()).append("ep_object_id",
 					document.getEp_object_id());
 			DBObject objectToSave = (DBObject) JSON.parse(json);

@@ -15,6 +15,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 
 	@Override
 	public DocumentForm getRandomIncomplete() {
+		
 		DocumentForm documentForm = new DocumentForm();
 
 		DbObjectIdPair randomInclompleteDocumentIdPair = documentsDao
@@ -69,7 +70,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 		if (object != null) {
 			Long documnetId = null;
 			try {
-				documnetId = Long.parseLong((String) object.get("dokument_id"));
+				documnetId = Long.parseLong((String) object.get("document_id"));
 			} catch (NumberFormatException e) {
 				System.out.println("Document id not found in DB!");
 			}

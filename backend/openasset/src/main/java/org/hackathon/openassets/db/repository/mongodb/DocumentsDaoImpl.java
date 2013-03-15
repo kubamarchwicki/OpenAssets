@@ -20,13 +20,13 @@ public class DocumentsDaoImpl implements DocumentsDao {
 	public DBObject findDocument(String documentId) {
 		DBObject document = null;
 
-		BasicDBObject query = new BasicDBObject("data.dokument_id", documentId);
+		BasicDBObject query = new BasicDBObject("data.document_id", documentId);
 
 		System.out.println(query);
 		document = documentsCollection.findOne(query);
 
 		if (document == null) {
-			System.out.println("Document not in database");
+			//System.out.println("Document not in database");
 			return null;
 		}
 
@@ -37,8 +37,8 @@ public class DocumentsDaoImpl implements DocumentsDao {
 	private String getIdFromDbObjectDocument(DBObject obj) {
 		try {
 			BasicDBObject data = (BasicDBObject) obj.get("data");
-			String returnStr = (String) data.get("dokument_id");
-			System.out.println("dokument_id == "+returnStr);
+			String returnStr = (String) data.get("document_id");
+			System.out.println("document_id == "+returnStr);
 			return returnStr;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +93,7 @@ public class DocumentsDaoImpl implements DocumentsDao {
 	@Override
 	public void updateDocument(DocumentForm obj) {
 		try {
-			BasicDBObject findQuery = new BasicDBObject("dokument_id",obj.getDocument_id()).append("ep_object_id", obj.getEp_object_id());
+			BasicDBObject findQuery = new BasicDBObject("document_id",obj.getDocument_id()).append("id", obj.getEp_object_id());
 			DBObject objectToUpdate = documentsCollection.findOne(findQuery);
 			objectToUpdate.put("trusted", "yes");
 			documentsCollection.update(findQuery, objectToUpdate);
