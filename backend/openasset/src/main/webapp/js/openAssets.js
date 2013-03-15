@@ -2,10 +2,17 @@ angular.module('openAssets', ['ngResource']).
   config(function($routeProvider) {
     $routeProvider.
       when('/', {controller:OpenAssetsCtrl, templateUrl:'home.html'}).
+      when('/thankyou', {controller:ThankYouCtrl, templateUrl:'thankyou.html'}).
       otherwise({redirectTo:'/'});
   });
 
-function OpenAssetsCtrl($scope, $http) {
+function ThankYouCtrl($scope, $location){
+  $scope.fillAnother = function(){
+    $location.path("/");
+  };
+}
+
+function OpenAssetsCtrl($scope,$location, $http) {
 
    var selectPage = function(page_id) {
         $(".document-container").hide();
@@ -45,13 +52,15 @@ function OpenAssetsCtrl($scope, $http) {
 
   documentUpdateSuccesfull = function(data, status, headers, config) {
     console.log("Document updated succesfully");
+    $location.path('/thankyou');
   }
 
   documentUpdateError = function(data, status, headers, config) {
     console.warn("Document not updated - Statuscode: " + status);
+    $location.path('/thankyou');
   }
 
-  $scope.saveInput = function(){
+  $scope.saveInput = function($location){
     postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);  
     $scope.userinput = {
       'document_id' : $scope.userinput.document_id,
