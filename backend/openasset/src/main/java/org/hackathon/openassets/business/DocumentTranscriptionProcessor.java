@@ -530,7 +530,7 @@ public class DocumentTranscriptionProcessor {
 					txt.setValidLevel(txt.getValidLevel() + 1);
 					transcriptionTxt.setValidLevel(transcriptionTxt
 							.getValidLevel() + 1);
-					if (size > 5) {
+					if (size > 3) {
 						if (size * 0.66 < transcriptionTxt.getValidLevel()) {
 							if (winnerPoints <= 0
 									|| winnerPoints < transcriptionTxt
