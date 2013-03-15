@@ -4,19 +4,31 @@
 <div class="container">
     <form ng-submit="saveInput()">
 
+        <div class="top-title">
+            Oświadczenia majątkowe posłów na sejm RP
+        </div>
+        <div class="top-description">
+            Aby umożliwić nam przetwarzanie zeznań majątkowych posłów, prosimy o wypełnienie pól na wszystkich stronach, a nastepnie naciśnięcie przycisku wyślij.
 
-        <div class="pagination">
-            <ul>
-                <li><a href="#">Prev</a></li>
-                <li id="link_{{docimage_page.id}}" class="page_link" ng-repeat="docimage_page in docimages">
-                    <a href="" ng-click="page_selected(docimage_page.id)">{{$index+1}}</a>
-                </li>
-                <li><a href="#">Next</a></li>
-            </ul>
         </div>
 
-        <div ng-repeat="docimage in docimages" style="clear:right">
-            <div id="{{docimage.id}}"  class="document-container">
+        <div class="top-bar row">
+            <div class="span2 offset4"><div id="pagination-bar" class="pagination">
+                <ul>
+                    <li id="link_{{docimage_page.id}}" class="page_link {{docimage_page.button_class}}" ng-repeat="docimage_page in docimages">
+                        <a href="" ng-click="page_selected(docimage_page.id)">{{$index+1}}</a>
+                    </li>
+                </ul>
+            </div></div>
+            <div class="span1">  <button id="send-button" class="btn btn-primary" type="button">Wyślij</button></div>
+        </div>
+
+
+
+
+
+        <div ng-repeat="docimage in docimages" >
+            <div id="{{docimage.id}}"  class="document-container {{docimage.page_class}}" >
                 <div class="span6 document-image">
                     <img ng-src="{{docimage.url}}"/>
                 </div>
@@ -34,7 +46,7 @@
 
         <div class="row">
             <div class="span12">
-                <input type="submit" value="Save">
+
             </div>
 
         </div>
