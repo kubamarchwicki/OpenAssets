@@ -1,4 +1,4 @@
-html,body {
+html, body {
     height: 100%;
 	/* fallback */
 	background-color: #efefff;
@@ -14,12 +14,21 @@ html,body {
 	/* Opera 11.10+ */
 	background:fixed -o-linear-gradient(top, #efefff, #fff);
 }
+
+.viewport {
+    height:100%;
+}
 .container{
 	background:#fff;
 	border:solid 1px #dedeee;
 	border-width:1px 1px 0 1px;
 	border-radius:25px 25px 0 0;
 	margin-top:10px;
+}
+
+.container-thankyou {
+    padding-top:200px;
+    height:100%;
 }
 
 .document-image {
@@ -36,6 +45,7 @@ html,body {
     margin-left:auto;
     margin-right:auto;
     margin-top:20px;
+    margin-bottom:20px;
     text-align:center;
     height:20px;
     line-height:20px;
@@ -57,12 +67,11 @@ html,body {
 
 }
 
-#pagination-bar {
-    display:inline;
+.pagination {
+    margin:0;
 }
 
 #send-button {
-    display:inline;
     margin-top:0;
 }
 
