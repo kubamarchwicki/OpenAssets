@@ -78,8 +78,8 @@ public class DocumentsDaoImpl implements DocumentsDao {
 
 				int counter = 0;
 				while (iterator.hasNext()) {
+					DBObject object = cursor.next();
 					if (counter == randomValue) {
-						DBObject object = cursor.next();
 						randomDocumentIdPair
 								.setEp_object_id(getIdEpFromDbObjectDocument(object));
 						randomDocumentIdPair
