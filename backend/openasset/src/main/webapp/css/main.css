@@ -32,6 +32,40 @@ html,body {
 	padding-left:35px;
 }
 
-.pagination {
+.top-bar {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
     text-align:center;
+    height:20px;
+    line-height:20px;
+    vertical-align:middle;
+    position:relative;
+
+
+}
+
+.top-title {
+    text-align:center;
+    font-size:2em;
+    font-weight:bold;
+    margin-top:20px;
+}
+.top-description {
+    text-align: center;
+    margin-top:10px;
+
+}
+
+#pagination-bar {
+    display:inline;
+}
+
+#send-button {
+    display:inline;
+    margin-top:0;
+}
+
+.hidden-page {
+    display:none;
 }

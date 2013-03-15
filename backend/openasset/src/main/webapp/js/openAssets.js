@@ -20,7 +20,15 @@ function OpenAssetsCtrl($scope, $http) {
   }   
   
   bindImageInfo = function(data, status, headers, config) {
+    data.images.forEach(function(docimage) {
+        if(docimage.id === "page1") {
+            docimage.button_class = "active";
+        } else {
+            docimage.page_class = "hidden-page";
+        }
+    });
     $scope.docimages = data.images;
+
     $scope.form_definition = app.form_definition;
     $scope.userinput = {
       'document_id' : data.document_id,
@@ -33,19 +41,23 @@ function OpenAssetsCtrl($scope, $http) {
   }
   
   postDocument = function(document){
-    return $http.post('rest/transcription/', document);
+    return $http.post('rest/document/', document);
   }
-  
+
   documentUpdateSuccesfull = function(data, status, headers, config) {
     console.log("Document updated succesfully");
   }
-  
+
   documentUpdateError = function(data, status, headers, config) {
     console.warn("Document not updated - Statuscode: " + status);
   }
-  
-  $scope.saveInput = function(){
+
+  updateDocument =  function(data, status, headers, config) {
     postDocument($scope.userinput).success(documentUpdateSuccesfull).error(documentUpdateError);
+  }
+
+  $scope.saveInput = function(){
+    retrieveExampleOutput().success(updateDocument);
   };
 
   $scope.page_selected = selectPage;
@@ -53,7 +65,6 @@ function OpenAssetsCtrl($scope, $http) {
 
   retrieveImageInfo().success(bindImageInfo);
 
-  selectPage("page1");
 }
 
 
