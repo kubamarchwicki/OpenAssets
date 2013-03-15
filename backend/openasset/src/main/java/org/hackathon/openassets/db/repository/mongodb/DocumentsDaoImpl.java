@@ -1,5 +1,8 @@
 package org.hackathon.openassets.db.repository.mongodb;
 
+import java.util.Iterator;
+import java.util.Random;
+
 import org.hackathon.openassets.model.DbObjectIdPair;
 import org.hackathon.openassets.model.DocumentForm;
 
@@ -26,7 +29,7 @@ public class DocumentsDaoImpl implements DocumentsDao {
 		document = documentsCollection.findOne(query);
 
 		if (document == null) {
-			//System.out.println("Document not in database");
+			// System.out.println("Document not in database");
 			return null;
 		}
 
@@ -38,7 +41,7 @@ public class DocumentsDaoImpl implements DocumentsDao {
 		try {
 			BasicDBObject data = (BasicDBObject) obj.get("data");
 			String returnStr = (String) data.get("document_id");
-			System.out.println("document_id == "+returnStr);
+			System.out.println("document_id == " + returnStr);
 			return returnStr;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,12 +49,12 @@ public class DocumentsDaoImpl implements DocumentsDao {
 		}
 
 	}
-	
+
 	private String getIdEpFromDbObjectDocument(DBObject obj) {
 		try {
 			String returnStr = (String) obj.get("id");
-			System.out.println("id == "+returnStr);
-			return returnStr; 
+			System.out.println("id == " + returnStr);
+			return returnStr;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -66,13 +69,27 @@ public class DocumentsDaoImpl implements DocumentsDao {
 		try {
 			BasicDBObject query = new BasicDBObject("trusted", "no");
 			cursor = documentsCollection.find(query);
+			if (cursor != null) {
 
-			while (cursor.hasNext()) {
-				DBObject object = cursor.next();
-				randomDocumentIdPair.setEp_object_id(getIdEpFromDbObjectDocument(object));
-				randomDocumentIdPair.setDocument_id(getIdFromDbObjectDocument(object));
-				System.out.println(cursor.next());
-				break;
+				int cursorSize = cursor.size();
+				Random random = new Random();
+				int randomValue = random.nextInt(cursorSize);
+				Iterator<DBObject> iterator = cursor.iterator();
+
+				int counter = 0;
+				while (iterator.hasNext()) {
+					if (counter == randomValue) {
+						DBObject object = cursor.next();
+						randomDocumentIdPair
+								.setEp_object_id(getIdEpFromDbObjectDocument(object));
+						randomDocumentIdPair
+								.setDocument_id(getIdFromDbObjectDocument(object));
+						break;
+					} else {
+						counter++;
+					}
+				}
+
 			}
 			return randomDocumentIdPair;
 		} catch (Exception e) {
@@ -93,7 +110,8 @@ public class DocumentsDaoImpl implements DocumentsDao {
 	@Override
 	public void updateDocument(DocumentForm obj) {
 		try {
-			BasicDBObject findQuery = new BasicDBObject("document_id",obj.getDocument_id()).append("id", obj.getEp_object_id());
+			BasicDBObject findQuery = new BasicDBObject("document_id",
+					obj.getDocument_id()).append("id", obj.getEp_object_id());
 			DBObject objectToUpdate = documentsCollection.findOne(findQuery);
 			objectToUpdate.put("trusted", "yes");
 			documentsCollection.update(findQuery, objectToUpdate);
