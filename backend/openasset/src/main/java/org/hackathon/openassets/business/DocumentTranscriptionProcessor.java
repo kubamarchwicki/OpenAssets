@@ -300,6 +300,7 @@ public class DocumentTranscriptionProcessor {
 		} else {
 			String winner = null;
 			Integer winnerPoints = Integer.valueOf(0);
+			int size = fieldTranscription.getSubmittedValues().size();
 			for (TranscriptionText txt : fieldTranscription
 					.getSubmittedValues()) {
 				if (comparator.compare(txt.getText(), transcription)) {
@@ -309,7 +310,34 @@ public class DocumentTranscriptionProcessor {
 					txt.setValidLevel(txt.getValidLevel() + 1);
 					transcriptionTxt.setValidLevel(transcriptionTxt
 							.getValidLevel() + 1);
+					if (size > 5) {
+						if (size * 0.66 < transcriptionTxt.getValidLevel()) {
+							if (winnerPoints <= 0
+									|| winnerPoints < transcriptionTxt
+											.getValidLevel()) {
+								winner = transcriptionTxt.getText();
+								winnerPoints = transcriptionTxt.getValidLevel();
+								System.out
+										.println("Processing document: found candidate for correct transcription in field "
+												+ fieldName
+												+ " with points: "
+												+ winnerPoints
+												+ " / required level: "
+												+ (size * 0.66));
+							}
+						}
+					}
 				}
+			}
+			if (winnerPoints > 0) {
+				System.out
+						.println("Processing document: found transcription in field "
+								+ fieldName
+								+ " with points: "
+								+ winnerPoints
+								+ " for required level: " + (size * 0.66));
+				fieldTranscription.setCorrect_value(winner);
+				fieldTranscription.setTrusted("yes");
 			}
 		}
 		fieldTranscription.getSubmittedValues().add(transcriptionTxt);
