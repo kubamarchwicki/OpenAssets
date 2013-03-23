@@ -12,19 +12,7 @@
 
         </div>
 
-        <div class="top-bar row">
-            <div class="span6"><div id="pagination-bar" class="pagination pagination-right">
-                <ul>
-                    <li id="link_{{docimage_page.id}}" class="page_link {{docimage_page.button_class}}" ng-repeat="docimage_page in docimages">
-                        <a href="" ng-click="page_selected(docimage_page.id)">{{$index+1}}</a>
-                    </li>
-                </ul>
-            </div></div>
-            <div class="span2">  <button id="send-button" class="btn btn-primary" type="submit">Wyślij</button></div>
-        </div>
-
-
-
+		<ng-include src="'navigation.html'"></ng-include>
 
 
         <div ng-repeat="docimage in docimages" >
@@ -50,6 +38,8 @@
             </div>
 
         </div>
+
+		<ng-include src="'navigation.html'"></ng-include>
 
     </form>
 

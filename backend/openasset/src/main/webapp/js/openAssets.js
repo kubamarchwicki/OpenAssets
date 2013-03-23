@@ -12,16 +12,24 @@ function ThankYouCtrl($scope, $location){
   };
 }
 
-function OpenAssetsCtrl($scope,$location, $http) {
+function OpenAssetsCtrl($scope, $location, $routeParams, $http) {
 
-   var selectPage = function(page_id) {
+   var currentIndex = 1;
+   var isLast = function() {
+	  var image_count = $scope.docimages.length || 0;
+	  return (currentIndex == image_count);
+   }
+   
+   var selectPage = function(index) {
         $(".document-container").hide();
         $(".page_link").removeClass("active");
-        $("#link_"+page_id).addClass("active");
-        $("#"+page_id).show();
+        $("#link_page"+index).addClass("active");
+        $("#page"+index).show();
+        
+        currentIndex = index;
    }
-
-  retrieveImageInfo = function(){
+   
+  retrieveRandomImageInfo = function(){
     return $http.get('rest/document/random');
   }   
   
@@ -69,9 +77,13 @@ function OpenAssetsCtrl($scope,$location, $http) {
   };
 
   $scope.page_selected = selectPage;
+  $scope.is_last = isLast;
+  $scope.next_page = function(event) {
+	  event.preventDefault();
+	  selectPage(currentIndex + 1);
+  }
 
-
-  retrieveImageInfo().success(bindImageInfo);
+  retrieveRandomImageInfo().success(bindImageInfo);
 
 }
 
