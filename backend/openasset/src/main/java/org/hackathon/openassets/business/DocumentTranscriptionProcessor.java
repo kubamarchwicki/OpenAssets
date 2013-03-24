@@ -6,11 +6,16 @@ import org.hackathon.openassets.model.DocumentForm;
 import org.hackathon.openassets.model.MappedDocument;
 import org.hackathon.openassets.model.SubmittedValue;
 import org.hackathon.openassets.model.SubmittedValue.TranscriptionText;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handles document transcriptions, submitted by users.
  */
 public class DocumentTranscriptionProcessor {
+
+	private final static Logger LOG = LoggerFactory
+			.getLogger(DocumentTranscriptionProcessor.class);
 
 	private SimpleSentenceComparator comparator;
 
@@ -503,8 +508,7 @@ public class DocumentTranscriptionProcessor {
 		}
 
 		if (null == fieldTranscription) {
-			System.out.println("Processing document: found new field "
-					+ fieldName);
+			LOG.debug("found new field {}", fieldName);
 			fieldTranscription = new SubmittedValue();
 			fieldTranscription.setField_name(fieldName);
 			fieldTranscription.setTrusted("no");
@@ -513,8 +517,7 @@ public class DocumentTranscriptionProcessor {
 				transcription);
 
 		if (null == fieldTranscription.getSubmittedValues()) {
-			System.out.println("Processing document: field " + fieldName
-					+ " don't have any transcriptions yet");
+			LOG.debug("field {} don't have any transcriptions yet", fieldName);
 			fieldTranscription
 					.setSubmittedValues(new LinkedList<SubmittedValue.TranscriptionText>());
 		} else {
@@ -524,9 +527,7 @@ public class DocumentTranscriptionProcessor {
 			for (TranscriptionText txt : fieldTranscription
 					.getSubmittedValues()) {
 				if (comparator.compare(txt.getText(), transcription)) {
-					System.out
-							.println("Processing document: found matching transcription for field "
-									+ fieldName);
+					LOG.debug("found matching transcription for field {}", fieldName);
 					txt.setValidLevel(txt.getValidLevel() + 1);
 					transcriptionTxt.setValidLevel(transcriptionTxt
 							.getValidLevel() + 1);
@@ -537,8 +538,7 @@ public class DocumentTranscriptionProcessor {
 											.getValidLevel()) {
 								winner = transcriptionTxt.getText();
 								winnerPoints = transcriptionTxt.getValidLevel();
-								System.out
-										.println("Processing document: found candidate for correct transcription in field "
+								LOG.debug("found candidate for correct transcription in field "
 												+ fieldName
 												+ " with points: "
 												+ winnerPoints
@@ -550,12 +550,7 @@ public class DocumentTranscriptionProcessor {
 				}
 			}
 			if (winnerPoints > 0) {
-				System.out
-						.println("Processing document: found transcription in field "
-								+ fieldName
-								+ " with points: "
-								+ winnerPoints
-								+ " for required level: " + (size * 0.66));
+				LOG.debug("found transcription in field {} with points: {} for required level: {}", fieldName, winnerPoints, (size * 0.66));
 				fieldTranscription.setCorrect_value(winner);
 				fieldTranscription.setTrusted("yes");
 			}

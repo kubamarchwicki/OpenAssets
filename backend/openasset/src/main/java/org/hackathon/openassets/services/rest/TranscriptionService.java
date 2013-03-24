@@ -15,16 +15,21 @@ import org.hackathon.openassets.db.repository.RepositoryFactory;
 import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepositoryImpl;
 import org.hackathon.openassets.model.DocumentForm;
 import org.hackathon.openassets.model.MappedDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
 @Path("transcription")
 public class TranscriptionService {
 
+	private final static Logger LOG = LoggerFactory
+			.getLogger(TranscriptionService.class);
+
 	@GET
 	@Path("/{transcriptionId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public MappedDocument getRandomDocument(
+	public MappedDocument getDocument(
 			@PathParam("transcriptionId") String documentId) {
 		MappedDocumentRepository repository = getDocRepo();
 		return repository.getById(documentId);
@@ -33,12 +38,11 @@ public class TranscriptionService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateDocument(DocumentForm form) {
-		System.out.println("Recieved object: " + form.getDocument_id());
+		LOG.info("Recieved object: " + form.getDocument_id());
 		MappedDocumentRepository repo = getDocRepo();
 		MappedDocument document = repo.getById(form.getDocument_id());
 		boolean newDocument = false;
 		if (null == document) {
-			System.out.println("We have a new document :D");
 			newDocument = true;
 			document = new MappedDocument();
 			document.setTrusted("no");
@@ -47,16 +51,12 @@ public class TranscriptionService {
 		}
 		new DocumentTranscriptionProcessor().processTranscription(document,
 				form, new SimpleSentenceComparator());
-		System.out.println("################################################");
-		System.out.println("# Its just for sure ignore another couple lines");
-		System.out.println("################################################");
-		System.out.println(new Gson().toJson(document));
-		System.out.println("################################################");
+
+		LOG.info("Document [isNew={}, data={}]", newDocument,
+				new Gson().toJson(document));
 		if (newDocument) {
-			System.out.println("Saving new document");
 			repo.save(document);
 		} else {
-			System.out.println("Updating document");
 			repo.update(document);
 		}
 	}

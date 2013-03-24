@@ -1,5 +1,8 @@
 package org.hackathon.openassets.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class MappedDocument {
 
 	private String trusted;

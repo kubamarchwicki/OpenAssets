@@ -2,6 +2,9 @@ package org.hackathon.openassets.model;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class SubmittedValue {
 
 	public static class TranscriptionText {

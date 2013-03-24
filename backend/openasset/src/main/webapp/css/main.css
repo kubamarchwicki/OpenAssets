@@ -78,3 +78,11 @@ html, body {
 .hidden-page {
     display:none;
 }
+
+.last {
+	float: right;
+}
+
+.form {
+	width: 90%;
+}

@@ -1,17 +1,25 @@
 package org.hackathon.openassets.db.repository.mongodb;
 
+import java.util.List;
+
 import org.hackathon.openassets.model.MappedDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 
 public class MappedDocumentDaoImpl implements MappedDocumentDao {
 
 	private final DBCollection mappedDocumentCollection;
+	private final static Logger LOG = LoggerFactory
+			.getLogger(MappedDocumentDaoImpl.class);
+
 
 	public MappedDocumentDaoImpl(final DB database) {
 		mappedDocumentCollection = database.getCollection("mapped_documents");
@@ -22,7 +30,7 @@ public class MappedDocumentDaoImpl implements MappedDocumentDao {
 
 		BasicDBObject query = new BasicDBObject("document_id", documentId);
 
-		System.out.println(query);
+		LOG.info("findDocument query: {}", query);
 		document = mappedDocumentCollection.findOne(query);
 
 		if (document == null) {
@@ -30,7 +38,7 @@ public class MappedDocumentDaoImpl implements MappedDocumentDao {
 			return null;
 		}
 
-		System.out.println(document.toString());
+		LOG.info("Document found: {}", document.toString());
 		return document;
 	}
 
@@ -56,6 +64,15 @@ public class MappedDocumentDaoImpl implements MappedDocumentDao {
 			mappedDocumentCollection.update(findQuery, objectToSave);
 		}
 
+	}
+
+	@Override
+	public List<DBObject> queryTrustedDocuments() {
+		
+		BasicDBObject query = new BasicDBObject("trusted", "yes");
+		DBCursor cursor = mappedDocumentCollection.find(query);
+		
+		return cursor.toArray();
 	}
 
 }

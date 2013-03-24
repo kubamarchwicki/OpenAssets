@@ -21,10 +21,10 @@
                     <img ng-src="{{docimage.url}}"/>
                 </div>
 
-                <div class="span4 document-form" >
+                <div class="span5 document-form" >
                     <div ng-repeat="field in form_definition[docimage.id].fields">
                         <label>{{field.desc}}</label>
-                        <input type="text" name="{{field.name}}" ng-model="userinput[field.name]"/>
+                        <input type="text" name="{{field.name}}" class="form" ng-model="userinput[field.name]"/>
 
                     </div>
                 </div>
