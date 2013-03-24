@@ -52,9 +52,27 @@
 						</connector>
 					</connectors>
 					<jetty-config>jetty.xml</jetty-config>
+					<systemProperties>
+						<systemProperty>
+							<name>logback.configurationFile</name>
+							<value>file:${project.basedir}/src/test/resources/logback.xml</value>
+						</systemProperty>
+					</systemProperties>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>1.1</version>
+						<type>jar</type>
+					</dependency>
+					<dependency>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+						<version>1.0.9</version>
+					</dependency>
+				</dependencies>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -78,6 +96,11 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.9</version>
 		</dependency>
 
 		<dependency>
