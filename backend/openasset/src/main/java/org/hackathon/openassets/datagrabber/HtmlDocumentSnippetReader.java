@@ -24,13 +24,13 @@ public class HtmlDocumentSnippetReader {
 	 * @param documentId - document identifier
 	 * @return list of image urls or null if error occurs
 	 */
-	public static List<ImageNode> getImageUrls(Long documentId) {
+	public static List<ImageNode> getImageUrls(String documentId) {
 
 		try {
 			String urlStr = "http://epanstwo.net/docs/snippets/{document_id}.html";
 
 			if (documentId != null) {
-				urlStr = urlStr.replace("{document_id}", documentId.toString());
+				urlStr = urlStr.replace("{document_id}", documentId);
 
 				URL u = new URL(urlStr);
 				URLConnection conn = u.openConnection();

@@ -8,44 +8,20 @@ import org.hackathon.openassets.datagrabber.ImageNode;
 import org.hackathon.openassets.db.repository.DocumentRepository;
 import org.hackathon.openassets.model.DbObjectIdPair;
 import org.hackathon.openassets.model.DocumentForm;
-
-import com.mongodb.DBObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DocumentRepositoryImpl implements DocumentRepository {
 
-	@Override
-	public DocumentForm getRandomIncomplete() {
-		
-		DocumentForm documentForm = new DocumentForm();
-
-		DbObjectIdPair randomInclompleteDocumentIdPair = documentsDao
-				.getRandomIncompleteDocumentId();
-		Long randomIncompleteDocumentId = null;
-		try {
-			randomIncompleteDocumentId = Long
-					.parseLong(randomInclompleteDocumentIdPair.getDocument_id());
-		} catch (NumberFormatException e) {
-			System.out.println("Document id not found in DB!");
-		}
-
-		List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
-				.getImageUrls(randomIncompleteDocumentId);
-		documentForm.setImages(imagesUrlList);
-		documentForm.setDocument_id(randomInclompleteDocumentIdPair
-				.getDocument_id());
-		documentForm.setEp_object_id(randomInclompleteDocumentIdPair
-				.getEp_object_id());
-
-		return documentForm;
-	}
+	private final static String CONNECTION_URL = "mongodb://localhost";
+	private final static Logger LOG = LoggerFactory
+			.getLogger(DocumentRepositoryImpl.class);
 
 	private DocumentsDao documentsDao;
 
-	private final static String connectionUrl = "mongodb://localhost";
-
 	public DocumentRepositoryImpl() {
 		try {
-			DbMongoClient dbMongoClient = new DbMongoClient(connectionUrl);
+			DbMongoClient dbMongoClient = new DbMongoClient(CONNECTION_URL);
 			documentsDao = dbMongoClient.getDocumentsDao();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -55,45 +31,51 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 	}
 
 	@Override
+	public DocumentForm getRandomIncomplete() {
+
+		DbObjectIdPair randomInclompleteDocumentIdPair = documentsDao
+				.getRandomIncompleteDocumentId();
+
+		DocumentForm documentForm = prepareDocumentForm(
+				randomInclompleteDocumentIdPair.getDocument_id(),
+				randomInclompleteDocumentIdPair.getEp_object_id());
+
+		LOG.info(
+				"Random incomplete DocumentForm[document_id={}, ep_object_id={}]",
+				documentForm.getDocument_id(), documentForm.getEp_object_id());
+		return documentForm;
+	}
+
+	@Override
+	public DocumentForm getById(String paramDocumentId) {
+		DbObjectIdPair document = documentsDao.findDocument(paramDocumentId);
+
+		if (document == null) {
+			LOG.warn("Object with id={} not found! Returning random document", paramDocumentId);
+		}
+		
+		return prepareDocumentForm(document.getDocument_id(), document.getEp_object_id());
+	}
+
+	private DocumentForm prepareDocumentForm(String documentId,
+			String EpObjectId) {
+		DocumentForm documentForm = new DocumentForm();
+
+		List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
+				.getImageUrls(documentId);
+		documentForm.setImages(imagesUrlList);
+		documentForm.setDocument_id(documentId);
+		documentForm.setEp_object_id(EpObjectId);
+
+		return documentForm;
+	}
+
+	@Override
 	/**
 	 * Mark document as trusted = yes in initial repository
 	 */
 	public void update(DocumentForm document) {
 		documentsDao.updateDocument(document);
-	}
-
-	@Override
-	public DocumentForm getById(String documentId) {
-		DocumentForm documentForm = new DocumentForm();
-		DBObject object = documentsDao.findDocument(documentId);
-
-		if (object != null) {
-			Long documnetId = null;
-			try {
-				documnetId = Long.parseLong((String) object.get("document_id"));
-			} catch (NumberFormatException e) {
-				System.out.println("Document id not found in DB!");
-			}
-
-			Long epObjectId = null;
-			try {
-				epObjectId = Long
-						.parseLong((String) object.get("ep_object_id"));
-			} catch (NumberFormatException e) {
-				System.out.println("Ep object id not found in DB!");
-			}
-
-			if (documnetId != null && epObjectId != null) {
-				List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
-						.getImageUrls(documnetId);
-				documentForm.setImages(imagesUrlList);
-				documentForm.setDocument_id(documentId.toString());
-				documentForm.setEp_object_id(epObjectId.toString());
-
-			}
-		}
-		return documentForm;
-
 	}
 
 }

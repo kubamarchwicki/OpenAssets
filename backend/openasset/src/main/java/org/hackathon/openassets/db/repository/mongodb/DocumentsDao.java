@@ -7,8 +7,9 @@ import com.mongodb.DBObject;
 
 public interface DocumentsDao {
 
-	public DBObject findDocument(String documentId);
+	public DbObjectIdPair findDocument(String documentId);
 	public DbObjectIdPair getRandomIncompleteDocumentId();
+	public DbObjectIdPair getIncompleteDocument(String documentId);
 	public boolean updateInvalid(DBObject obj);
 	public void updateDocument(DocumentForm obj);
 		

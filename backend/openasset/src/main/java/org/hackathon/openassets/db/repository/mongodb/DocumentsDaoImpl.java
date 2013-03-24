@@ -5,6 +5,8 @@ import java.util.Random;
 
 import org.hackathon.openassets.model.DbObjectIdPair;
 import org.hackathon.openassets.model.DocumentForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -15,53 +17,48 @@ import com.mongodb.DBObject;
 public class DocumentsDaoImpl implements DocumentsDao {
 
 	private final DBCollection documentsCollection;
+	private final static Logger LOG = LoggerFactory
+			.getLogger(DocumentsDaoImpl.class);
 
 	public DocumentsDaoImpl(final DB database) {
 		documentsCollection = database.getCollection("documents");
 	}
 
-	public DBObject findDocument(String documentId) {
-		DBObject document = null;
-
+	public DbObjectIdPair findDocument(String documentId) {
 		BasicDBObject query = new BasicDBObject("data.document_id", documentId);
 
-		System.out.println(query);
-		document = documentsCollection.findOne(query);
+		LOG.info("findDocument query: {}", query);
+		DBObject document = documentsCollection.findOne(query);
 
 		if (document == null) {
-			// System.out.println("Document not in database");
 			return null;
 		}
 
-		System.out.println(document.toString());
-		return document;
+		LOG.info("Document found: {}", document.toString());
+		
+		DbObjectIdPair documentIdPair = new DbObjectIdPair();
+		documentIdPair
+				.setEp_object_id(getIdEpFromDbObjectDocument(document));
+		documentIdPair
+				.setDocument_id(getIdFromDbObjectDocument(document));
+		return documentIdPair;
 	}
 
-	private String getIdFromDbObjectDocument(DBObject obj) {
-		try {
-			BasicDBObject data = (BasicDBObject) obj.get("data");
-			String returnStr = (String) data.get("document_id");
-			System.out.println("document_id == " + returnStr);
-			return returnStr;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	@Override
+	public DbObjectIdPair getIncompleteDocument(String documentId) {
+		DBObject document = null;
+		BasicDBObject query = new BasicDBObject("data.document_id", documentId)
+				.append("trusted", "no");
+		document = documentsCollection.findOne(query);
 
+		DbObjectIdPair documentIdPair = new DbObjectIdPair();
+		documentIdPair
+				.setEp_object_id(getIdEpFromDbObjectDocument(document));
+		documentIdPair
+				.setDocument_id(getIdFromDbObjectDocument(document));
+		return documentIdPair;
 	}
-
-	private String getIdEpFromDbObjectDocument(DBObject obj) {
-		try {
-			String returnStr = (String) obj.get("id");
-			System.out.println("id == " + returnStr);
-			return returnStr;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
-
+	
 	@Override
 	public DbObjectIdPair getRandomIncompleteDocumentId() {
 		DBCursor cursor = null;
@@ -94,17 +91,41 @@ public class DocumentsDaoImpl implements DocumentsDao {
 			return randomDocumentIdPair;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Getting random incomplete document failed!");
+			LOG.warn("Getting random incomplete document failed!");
 			return randomDocumentIdPair;
 		} finally {
 			cursor.close();
 		}
 	}
 
+	private String getIdFromDbObjectDocument(DBObject obj) {
+		try {
+			BasicDBObject data = (BasicDBObject) obj.get("data");
+			String returnStr = (String) data.get("document_id");
+			LOG.info("getIdFromDbObjectDocument [document_id={}]", returnStr);
+			return returnStr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	private String getIdEpFromDbObjectDocument(DBObject obj) {
+		try {
+			String returnStr = (String) obj.get("id");
+			LOG.info("getIdEpFromDbObjectDocument [id={}]", returnStr);
+			return returnStr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
 	@Override
 	public boolean updateInvalid(DBObject obj) {
-		// TODO Auto-generated method stub
-		return false;
+		throw new IllegalStateException("Not implemented");
 	}
 
 	@Override
@@ -116,8 +137,7 @@ public class DocumentsDaoImpl implements DocumentsDao {
 			objectToUpdate.put("trusted", "yes");
 			documentsCollection.update(findQuery, objectToUpdate);
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Document update failed!");
+			LOG.warn("Document update failed!", e);
 		}
 	}
 

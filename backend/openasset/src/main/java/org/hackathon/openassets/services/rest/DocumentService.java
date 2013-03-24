@@ -17,7 +17,7 @@ public class DocumentService {
 	@GET
 	@Path("/{documentId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public DocumentForm getRandomDocument(
+	public DocumentForm getDocumentById(
 			@PathParam("documentId") String documentId) {
 		DocumentRepository repository = getDocRepo();
 		return repository.getById(documentId);
