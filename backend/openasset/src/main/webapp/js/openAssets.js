@@ -15,10 +15,6 @@ function ThankYouCtrl($scope, $location){
 function OpenAssetsCtrl($scope, $location, $routeParams, $http) {
 
    var currentIndex = 1;
-   var isLast = function() {
-	  var image_count = $scope.docimages.length || 0;
-	  return (currentIndex == image_count);
-   }
    
    var selectPage = function(index) {
         $(".document-container").hide();
@@ -48,6 +44,10 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http) {
       'document_id' : data.document_id,
       'ep_object_id' : data.ep_object_id
     };
+    
+    $scope.is_last = function() {
+  	  return (currentIndex == $scope.docimages.length);
+    }
   } 
 
   retrieveExampleOutput = function(){
@@ -77,7 +77,7 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http) {
   };
 
   $scope.page_selected = selectPage;
-  $scope.is_last = isLast;
+  $scope.is_last = false;
   $scope.next_page = function(event) {
 	  event.preventDefault();
 	  selectPage(currentIndex + 1);
