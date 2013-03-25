@@ -1,0 +1,88 @@
+html, body {
+    height: 100%;
+	/* fallback */
+	background-color: #efefff;
+	background-repeat: repeat-x; 
+	/* Safari 4-5, Chrome 1-9 */
+	background:fixed -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e5e5ff), to(#fff));
+	/* Safari 5.1, Chrome 10+ */
+	background:fixed -webkit-linear-gradient(top, #efefff, #fff);
+	/* Firefox 3.6+ */
+	background:fixed -moz-linear-gradient(top, #efefff, #fff);
+	 /* IE 10 */
+	background:fixed -ms-linear-gradient(top, #efefff, #fff);
+	/* Opera 11.10+ */
+	background:fixed -o-linear-gradient(top, #efefff, #fff);
+}
+
+.viewport {
+    height:100%;
+}
+.container{
+	background:#fff;
+	border:solid 1px #dedeee;
+	border-width:1px 1px 0 1px;
+	border-radius:25px 25px 0 0;
+	margin-top:10px;
+}
+
+.container-thankyou {
+    padding-top:200px;
+    height:100%;
+}
+
+.document-image {
+	background-color: #ffeeee;
+}
+
+.document-form {
+	padding:20px;
+	border-left:solid 1px #dedeee;
+	padding-left:35px;
+}
+
+.top-bar {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    text-align:center;
+    height:20px;
+    line-height:20px;
+    vertical-align:middle;
+    position:relative;
+
+
+}
+
+.top-title {
+    text-align:center;
+    font-size:2em;
+    font-weight:bold;
+    margin-top:20px;
+}
+.top-description {
+    text-align: center;
+    margin-top:10px;
+
+}
+
+.pagination {
+    margin:0;
+}
+
+#send-button {
+    margin-top:0;
+}
+
+.hidden-page {
+    display:none;
+}
+
+.last {
+	float: right;
+}
+
+.form {
+	width: 90%;
+}

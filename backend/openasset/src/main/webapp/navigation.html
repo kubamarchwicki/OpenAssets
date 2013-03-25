@@ -1,0 +1,20 @@
+<div class="top-bar row">
+    <div class="span6">
+	    <div id="pagination-bar" class="pagination pagination-right">
+	        <ul>
+	            <li id="link_{{docimage_page.id}}" class="page_link {{docimage_page.button_class}}" ng-repeat="docimage_page in docimages">
+	                <a href="" ng-click="page_selected($index+1)">{{$index+1}}</a>
+	            </li>
+	        </ul>
+	    </div>
+    </div>
+	<div class="span4" ng-show="!is_last()">
+		<button id="next-button" class="btn btn-primary" ng-click="next_page($event)">Następny</button>
+		<button id="send-button" class="btn btn-secondary" type="submit">Wyślij</button>
+	</div>
+	<div class="span4" ng-show="is_last()">
+		<button id="next-button" class="btn btn-secondary" disabled>Następny</button>
+		<button id="send-button" class="btn btn-primary" type="submit">Wyślij</button>
+	</div>
+	
+</div>
