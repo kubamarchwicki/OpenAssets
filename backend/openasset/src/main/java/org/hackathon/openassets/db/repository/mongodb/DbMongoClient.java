@@ -1,12 +1,19 @@
 package org.hackathon.openassets.db.repository.mongodb;
 
 import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mongodb.DB;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.MongoURI;
 
 public class DbMongoClient {
 
+	private final static Logger LOG = LoggerFactory
+			.getLogger(DbMongoClient.class);
+	private final static String DEFAUFT_CONNECTION_URL = "mongodb://localhost/hackaton";
+	
 	private DocumentsDao documentsDao;
 	
 	private MappedDocumentDao mappedDocumentsDao;
@@ -14,22 +21,34 @@ public class DbMongoClient {
 	final DB database;
 
 
+
+	public DbMongoClient() throws IOException {
+		MongoURI mongoURI = new MongoURI(getConnecionUrl());
+		database = mongoURI.connectDB();
+		
+		if (mongoURI.getUsername() != null && mongoURI.getPassword() != null) {
+			database.authenticate(mongoURI.getUsername(), mongoURI.getPassword());  
+		}
+	}
+
 	public DocumentsDao getDocumentsDao() {
 		documentsDao = new DocumentsDaoImpl(database);
 		return documentsDao;
 	}
-
-	public DbMongoClient(String mongoURIString) throws IOException {
-		final MongoClient mongoClient = new MongoClient(new MongoClientURI(
-				mongoURIString));
-			database = mongoClient.getDB("hackaton");
-		
-	}
-
 
 	public MappedDocumentDao getMappedDocumentsDao() {
 		mappedDocumentsDao = new MappedDocumentDaoImpl(database);
 		return mappedDocumentsDao;
 	}
 
+	private static String getConnecionUrl() {
+		String uri = System.getenv("MONGOHQ_URL");
+		if (uri == null) {
+			LOG.info("No environement variable for connection uri. Defaulting");
+			uri = DEFAUFT_CONNECTION_URL;
+		}
+		
+		LOG.info("Connection URL: {}", uri);
+		return uri;
+	}
 }

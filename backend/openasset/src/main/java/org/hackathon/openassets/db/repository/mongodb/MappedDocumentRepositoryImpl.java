@@ -55,11 +55,9 @@ public class MappedDocumentRepositoryImpl implements MappedDocumentRepository {
 
 	private MappedDocumentDao mappedDocumentsDao;
 
-	private final static String connectionUrl = "mongodb://localhost";
-
 	public MappedDocumentRepositoryImpl() {
 		try {
-			DbMongoClient dbMongoClient = new DbMongoClient(connectionUrl);
+			DbMongoClient dbMongoClient = new DbMongoClient();
 			mappedDocumentsDao = dbMongoClient.getMappedDocumentsDao();
 		} catch (IOException e) {
 			e.printStackTrace();

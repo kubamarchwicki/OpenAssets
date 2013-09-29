@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 public class DocumentRepositoryImpl implements DocumentRepository {
 
-	private final static String CONNECTION_URL = "mongodb://localhost";
 	private final static Logger LOG = LoggerFactory
 			.getLogger(DocumentRepositoryImpl.class);
 
@@ -21,7 +20,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 
 	public DocumentRepositoryImpl() {
 		try {
-			DbMongoClient dbMongoClient = new DbMongoClient(CONNECTION_URL);
+			DbMongoClient dbMongoClient = new DbMongoClient();
 			documentsDao = dbMongoClient.getDocumentsDao();
 		} catch (IOException e) {
 			e.printStackTrace();
