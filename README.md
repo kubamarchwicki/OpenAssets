@@ -46,18 +46,13 @@ heroku apps:create <nazwa>
 ```
 heroku addons:add mongohq:sandbox
 ```
-
 Infomacje o bazie (także connection string) można zobaczyć wydając komendę
 ```
 heroku addons:open mongohq
 ```
 W przeglądarce zostanie otwarta pełna informacja nt. bazy
 
-3. Załaduj przykładowe dane do bazy
-
-Zgodnie z opisem: https://devcenter.heroku.com/articles/mongohq#upgrading-your-database
-
-Zamiast `mongorestore` importujemy zawatość pliku `init_import.json`
+3. Załaduj przykładowe dane do bazy.  Zgodnie z opisem: https://devcenter.heroku.com/articles/mongohq#upgrading-your-database.  Zamiast `mongorestore` importujemy zawatość pliku `init_import.json`
 `mongoimport -c documents -h <hostname>.mongohq.com:<port> -d <baza_danych> -u <username> -p <haslo> /sciezka/do/pliku/init_import.json `
 
 4. Dodaj nowy `git remote`
@@ -71,5 +66,7 @@ git push heroku master
 ```
 
 6. Otwórz aplikację w przeglądarce
-```heroku open```
+```
+heroku open
+```
 
