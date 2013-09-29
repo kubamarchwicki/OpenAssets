@@ -3,6 +3,9 @@ OpenAssets project
 
 Forms to digitalize Assets Declaration from Members of Parlament
 
+Application runs under: http://openassets.herokuapp.com/
+
+
 Zależności
 ==========
 Projekt używa mongodb to przechowywania danych.
@@ -51,4 +54,6 @@ git remote add heroku git@heroku.com:<nazwa>.git
 5. Wyślij aplikację
 git push heroku master
 
+6. Otwórz aplikację w przeglądarce
+heroku open
 
