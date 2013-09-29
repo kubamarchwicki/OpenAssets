@@ -1,7 +1,6 @@
-/backend/openasset/.classpath
-/backend/openasset/.project
-/backend/openasset/.settings
-.idea
-*.iml
-.gitignore
-RemoteSystemsTempFiles
+target
+.classpath
+.project
+.settings/
+RemoteSystemsTempFiles/
+
