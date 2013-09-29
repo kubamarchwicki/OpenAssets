@@ -27,20 +27,17 @@
 			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.22</version>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>7.6.0.v20120127</version>
 				<configuration>
-					<connectors>
-						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>9090</port>
-							<maxIdleTime>60000</maxIdleTime>
-						</connector>
-					</connectors>
-					<jetty-config>jetty.xml</jetty-config>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/${project.artifactId}</contextPath>
+					</webApp>
 					<systemProperties>
 						<systemProperty>
 							<name>logback.configurationFile</name>
-							<value>file:${project.basedir}/src/test/resources/logback.xml</value>
+							<value>file:${project.basedir}/src/main/resources/logback.xml</value>
 						</systemProperty>
 					</systemProperties>
 				</configuration>
@@ -58,10 +55,37 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
 	<dependencies>
+		<!-- jettu runtime -->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>8.0.3.v20111011</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+		<!-- mongo -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>

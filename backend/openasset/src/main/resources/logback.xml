@@ -5,7 +5,9 @@
     </layout>
   </appender>
 
-  <root level="debug">
+  <logger name="org.hackathon.openassets" level="debug" />
+
+  <root level="info">
     <appender-ref ref="STDOUT"/>
   </root>
 </configuration>
