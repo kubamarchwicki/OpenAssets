@@ -54,7 +54,9 @@ heroku addons:open mongohq
 W przeglądarce zostanie otwarta pełna informacja nt. bazy
 
 3. Załaduj przykładowe dane do bazy
+
 Zgodnie z opisem: https://devcenter.heroku.com/articles/mongohq#upgrading-your-database
+
 Zamiast `mongorestore` importujemy zawatość pliku `init_import.json`
 `mongoimport -c documents -h <hostname>.mongohq.com:<port> -d <baza_danych> -u <username> -p <haslo> /sciezka/do/pliku/init_import.json `
 
