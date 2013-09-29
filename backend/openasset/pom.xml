@@ -31,9 +31,6 @@
 				<version>7.6.0.v20120127</version>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<webApp>
-						<contextPath>/${project.artifactId}</contextPath>
-					</webApp>
 					<systemProperties>
 						<systemProperty>
 							<name>logback.configurationFile</name>
@@ -55,20 +52,28 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                        <configuration>
+                            <assembleDirectory>target</assembleDirectory>
+                            <programs>
+                                <program>
+                                    <mainClass>org.hackathon.openassets.Runner</mainClass>
+                                    <name>webapp</name>
+                                </program>
+                            </programs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>			
 		</plugins>
 	</build>
 
@@ -76,8 +81,8 @@
 		<!-- jettu runtime -->
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-servlet</artifactId>
-			<version>8.0.3.v20111011</version>
+			<artifactId>jetty-webapp</artifactId>
+			<version>7.6.0.v20120127</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
