@@ -1,0 +1,50 @@
+<body ng-controller="InitializeForms" xmlns="http://www.w3.org/1999/html">
+
+
+<div class="container-fluid ">
+    <form ng-submit="saveInput()">
+
+	 <div class="page-header pagination-centered">
+        <h1>
+            Oświadczenia majątkowe posłów na sejm RP
+        </h1>
+        <div class="lead">
+            Aby umożliwić nam przetwarzanie zeznań majątkowych posłów, prosimy o wypełnienie pól na wszystkich stronach, a nastepnie naciśnięcie przycisku wyślij.
+        </div>
+	</div>
+	
+		<ng-include src="'navigation.html'"></ng-include>
+
+
+        <div class="row-fluid" ng-repeat="docimage in docimages" >
+            <div id="{{docimage.id}}"  class="document-container {{docimage.page_class}}" >
+                <div class="span8 document-image">
+                    <img ng-src="{{docimage.url}}"/>
+                </div>
+
+                <div class="span4 document-form" >
+                    <div ng-repeat="field in form_definition[docimage.id].fields">
+                        <label>{{field.desc}}</label>
+                        <input type="text" name="{{field.name}}" class="form" ng-model="userinput[field.name]"/>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+		<ng-include src="'navigation.html'"></ng-include>
+
+    </form>
+
+
+
+</div>
+
+
+</body>
+
+
+
+
+
