@@ -1,28 +1,15 @@
 html, body {
+	max-width: 940px;
     height: 100%;
-	/* fallback */
-	background-color: #efefff;
-	background-repeat: repeat-x; 
-	/* Safari 4-5, Chrome 1-9 */
-	background:fixed -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e5e5ff), to(#fff));
-	/* Safari 5.1, Chrome 10+ */
-	background:fixed -webkit-linear-gradient(top, #efefff, #fff);
-	/* Firefox 3.6+ */
-	background:fixed -moz-linear-gradient(top, #efefff, #fff);
-	 /* IE 10 */
-	background:fixed -ms-linear-gradient(top, #efefff, #fff);
-	/* Opera 11.10+ */
-	background:fixed -o-linear-gradient(top, #efefff, #fff);
 }
 
 .viewport {
     height:100%;
+	max-width: 940px;
 }
 .container{
+	max-width: 940px;
 	background:#fff;
-	border:solid 1px #dedeee;
-	border-width:1px 1px 0 1px;
-	border-radius:25px 25px 0 0;
 	margin-top:10px;
 }
 
