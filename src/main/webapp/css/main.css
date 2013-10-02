@@ -68,6 +68,16 @@ html, body {
 	float: right;
 }
 
+textarea {
+	 word-wrap: break-word;
+	 height: auto;
+	 transition: 0.05s;
+	 -moz-transition: 0.05s;
+	 -webkit-transition: 0.05s;
+	 -o-transition: 0.05s;
+ }
+ 
 .form {
 	width: 90%;
 }
+

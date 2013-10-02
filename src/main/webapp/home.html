@@ -16,7 +16,7 @@
 		<ng-include src="'navigation.html'"></ng-include>
 
 
-        <div class="row-fluid" ng-repeat="docimage in docimages" >
+        <div id="image-form" class="row-fluid" ng-repeat="docimage in docimages" >
             <div id="{{docimage.id}}"  class="document-container {{docimage.page_class}}" >
                 <div class="span8 document-image">
                     <img ng-src="{{docimage.url}}"/>
@@ -25,8 +25,7 @@
                 <div class="span4 document-form" >
                     <div ng-repeat="field in form_definition[docimage.id].fields">
                         <label>{{field.desc}}</label>
-                        <input type="text" name="{{field.name}}" class="form" ng-model="userinput[field.name]"/>
-
+                        <textarea auto-grow rows="1" name="{{field.name}}" class="form" ng-model="userinput[field.name]"></textarea>
                     </div>
                 </div>
             </div>
