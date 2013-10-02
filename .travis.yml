@@ -1,0 +1,6 @@
+language: java
+deploy:
+    provider: heroku
+    api_key: 7a3b6b4e-2c1f-4ad8-9fad-54b4a01e08f8
+    app: openassets-dev
+
