@@ -18,6 +18,8 @@ html, body {
 
 .document-image {
 	background-color: #ffeeee;
+	overflow: hidden;
+	max-height: 1000px;
 }
 
 .document-form {

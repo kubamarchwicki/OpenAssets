@@ -104,3 +104,42 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
 	Service.success(bindImageInfo);		
 
 }
+
+// image zoomer
+(function() {
+	var img = $('.document-image img');
+
+	// drag
+	var drag = false;
+	img.mousedown(function(event){
+		var target = $(event.target);
+		drag = {
+			img: target;
+			startX: event.pageX - target.css('left'),
+			startY: event.pageY - target.css('top')
+		};
+	});
+	img.mouseup(function(event){
+		drag = false;
+	});
+	img.mousemove(function(event){
+		if (drag) {
+			drag.img.css('top', event.pageY - drag.startY);
+			drag.img.css('left', event.pageX - drag.startX);
+		}
+	});
+	
+	//zoom
+	var zoomBtn = $('#zoom-button');
+	zoomBtn.click(function(){ // TODO: czy powieksza sie zachowujac srodek zdjecia? przetestowac
+		if (img.css('max-width') == 'auto') {
+			img.css('max-width', '100%');
+			zoomBtn.removeClass('btn-primary');
+		} else {
+			img.css('max-width', 'auto');
+			zoomBtn.addClass('btn-primary');
+		}
+	});
+		
+})();
+
