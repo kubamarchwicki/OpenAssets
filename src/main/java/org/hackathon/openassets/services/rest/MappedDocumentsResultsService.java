@@ -7,9 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.hackathon.openassets.db.repository.MappedDocumentRepository;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
-import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepositoryImpl;
+import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
 import org.hackathon.openassets.model.MappedDocument;
 
 @Path("results")

@@ -35,7 +35,7 @@ public class DbMongoClient {
 	}
 
 	public MappedDocumentDao getMappedDocumentsDao() {
-		mappedDocumentsDao = new MappedDocumentDaoImpl(database);
+		mappedDocumentsDao = new MappedDocumentDao(database);
 		return mappedDocumentsDao;
 	}
 

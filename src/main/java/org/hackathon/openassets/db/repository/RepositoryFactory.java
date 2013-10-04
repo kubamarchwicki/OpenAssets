@@ -1,7 +1,7 @@
 package org.hackathon.openassets.db.repository;
 
 import org.hackathon.openassets.db.repository.mongodb.DocumentRepository;
-import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepositoryImpl;
+import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
 
 public class RepositoryFactory {
 
@@ -10,7 +10,7 @@ public class RepositoryFactory {
 	}
 
 	public MappedDocumentRepository getMappedDocumentRepository() {
-		return new MappedDocumentRepositoryImpl();
+		return new MappedDocumentRepository();
 	}
 
 }

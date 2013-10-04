@@ -8,8 +8,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.hackathon.openassets.db.repository.MappedDocumentRepository;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
+import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
 import org.hackathon.openassets.model.MappedDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,28 +32,11 @@ public class TranscriptionService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateDocument(final String form) {
-		//TODO: add IP address of document submitter
+		//TODO: add IP address of document submitter GSON
+		//TODO: validation @NotNull
 		LOG.info("Recieved object: " + form);
-//		MappedDocumentRepository repo = getDocRepo();
-//		MappedDocument document = repo.getById(form.getDocument_id());
-//		boolean newDocument = false;
-//		if (null == document) {
-//			newDocument = true;
-//			document = new MappedDocument();
-//			document.setTrusted("no");
-//			document.setEp_object_id(form.getEp_object_id());
-//			document.setDocument_id(form.getDocument_id());
-//		}
-//		new DocumentTranscriptionProcessor().processTranscription(document,
-//				form, new SimpleSentenceComparator());
-//
-//		LOG.info("Document [isNew={}, data={}]", newDocument,
-//				new Gson().toJson(document));
-//		if (newDocument) {
-//			repo.save(document);
-//		} else {
-//			repo.update(document);
-//		}
+		MappedDocumentRepository repo = getDocRepo();
+		repo.insert(form);
 	}
 
 	/**
