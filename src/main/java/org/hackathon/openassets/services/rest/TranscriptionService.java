@@ -65,7 +65,6 @@ public class TranscriptionService {
 	 * @return repository object
 	 */
 	protected MappedDocumentRepository getDocRepo() {
-		return new RepositoryFactory()
-				.getMappedDocumentRepository(MappedDocumentRepositoryImpl.class);
+		return new RepositoryFactory().getMappedDocumentRepository();
 	}
 }

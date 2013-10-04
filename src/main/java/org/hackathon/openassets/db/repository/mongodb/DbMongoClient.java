@@ -20,8 +20,6 @@ public class DbMongoClient {
 	
 	final DB database;
 
-
-
 	public DbMongoClient() throws IOException {
 		MongoURI mongoURI = new MongoURI(getConnecionUrl());
 		database = mongoURI.connectDB();
@@ -32,7 +30,7 @@ public class DbMongoClient {
 	}
 
 	public DocumentsDao getDocumentsDao() {
-		documentsDao = new DocumentsDaoImpl(database);
+		documentsDao = new DocumentsDao(database);
 		return documentsDao;
 	}
 

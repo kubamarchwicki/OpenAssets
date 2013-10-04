@@ -6,9 +6,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.hackathon.openassets.db.repository.DocumentRepository;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
-import org.hackathon.openassets.db.repository.mongodb.DocumentRepositoryImpl;
+import org.hackathon.openassets.db.repository.mongodb.DocumentRepository;
 import org.hackathon.openassets.model.DocumentForm;
 
 @Path("document")
@@ -28,14 +27,13 @@ public class DocumentService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public DocumentForm getRandomDocument() {
 		DocumentRepository repository = getDocRepo();
-		return repository.getRandomIncomplete();
+		return repository.getRandom();
 	}
 
 	/**
 	 * @return repository object
 	 */
 	protected DocumentRepository getDocRepo() {
-		return new RepositoryFactory()
-				.getDocumentRepository(DocumentRepositoryImpl.class);
+		return new RepositoryFactory().getDocumentRepository();
 	}
 }
