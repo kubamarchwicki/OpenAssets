@@ -8,17 +8,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.hackathon.openassets.business.DocumentTranscriptionProcessor;
-import org.hackathon.openassets.business.SimpleSentenceComparator;
 import org.hackathon.openassets.db.repository.MappedDocumentRepository;
 import org.hackathon.openassets.db.repository.RepositoryFactory;
-import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepositoryImpl;
-import org.hackathon.openassets.model.DocumentForm;
 import org.hackathon.openassets.model.MappedDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.gson.Gson;
 
 @Path("transcription")
 public class TranscriptionService {
@@ -37,28 +31,29 @@ public class TranscriptionService {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateDocument(DocumentForm form) {
-		LOG.info("Recieved object: " + form.getDocument_id());
-		MappedDocumentRepository repo = getDocRepo();
-		MappedDocument document = repo.getById(form.getDocument_id());
-		boolean newDocument = false;
-		if (null == document) {
-			newDocument = true;
-			document = new MappedDocument();
-			document.setTrusted("no");
-			document.setEp_object_id(form.getEp_object_id());
-			document.setDocument_id(form.getDocument_id());
-		}
-		new DocumentTranscriptionProcessor().processTranscription(document,
-				form, new SimpleSentenceComparator());
-
-		LOG.info("Document [isNew={}, data={}]", newDocument,
-				new Gson().toJson(document));
-		if (newDocument) {
-			repo.save(document);
-		} else {
-			repo.update(document);
-		}
+	public void updateDocument(final String form) {
+		//TODO: add IP address of document submitter
+		LOG.info("Recieved object: " + form);
+//		MappedDocumentRepository repo = getDocRepo();
+//		MappedDocument document = repo.getById(form.getDocument_id());
+//		boolean newDocument = false;
+//		if (null == document) {
+//			newDocument = true;
+//			document = new MappedDocument();
+//			document.setTrusted("no");
+//			document.setEp_object_id(form.getEp_object_id());
+//			document.setDocument_id(form.getDocument_id());
+//		}
+//		new DocumentTranscriptionProcessor().processTranscription(document,
+//				form, new SimpleSentenceComparator());
+//
+//		LOG.info("Document [isNew={}, data={}]", newDocument,
+//				new Gson().toJson(document));
+//		if (newDocument) {
+//			repo.save(document);
+//		} else {
+//			repo.update(document);
+//		}
 	}
 
 	/**

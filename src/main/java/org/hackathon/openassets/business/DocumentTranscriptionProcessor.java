@@ -2,7 +2,7 @@ package org.hackathon.openassets.business;
 
 import java.util.LinkedList;
 
-import org.hackathon.openassets.model.DocumentForm;
+import org.hackathon.openassets.model.DbObjectIdPair;
 import org.hackathon.openassets.model.MappedDocument;
 import org.hackathon.openassets.model.SubmittedValue;
 import org.hackathon.openassets.model.SubmittedValue.TranscriptionText;
@@ -30,7 +30,7 @@ public class DocumentTranscriptionProcessor {
 	 * @return
 	 */
 	public MappedDocument processTranscription(MappedDocument document,
-			DocumentForm transcription, SimpleSentenceComparator comparator) {
+			DbObjectIdPair transcription, SimpleSentenceComparator comparator) {
 		this.comparator = comparator;
 
 		SubmittedValue sv;
