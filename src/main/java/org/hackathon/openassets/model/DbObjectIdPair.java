@@ -1,11 +1,19 @@
 package org.hackathon.openassets.model;
 
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hackathon.openassets.datagrabber.HtmlDocumentSnippetReader;
+import org.hackathon.openassets.datagrabber.ImageNode;
+
+@XmlRootElement
 public class DbObjectIdPair {
 
 	private String ep_object_id;
-
 	private String document_id;
-
+	private List<ImageNode> images;
+	
 	public String getEp_object_id() {
 		return ep_object_id;
 	}
@@ -22,7 +30,19 @@ public class DbObjectIdPair {
 		this.document_id = document_id;
 	}
 
+	public List<ImageNode> getImages() {
+		return images;
+	}
+
+	public void setImages(List<ImageNode> images) {
+		this.images = images;
+	}
 	
+	public void downloadImages() {
+		List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
+				.getImageUrls(getDocument_id());
+		this.setImages(imagesUrlList);
+	}
 	
 	
 }

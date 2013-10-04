@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.hackathon.openassets.db.repository.RepositoryFactory;
 import org.hackathon.openassets.db.repository.mongodb.DocumentRepository;
-import org.hackathon.openassets.model.DocumentForm;
+import org.hackathon.openassets.model.DbObjectIdPair;
 
 @Path("document")
 public class DocumentService {
@@ -16,7 +16,7 @@ public class DocumentService {
 	@GET
 	@Path("/{documentId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public DocumentForm getDocumentById(
+	public DbObjectIdPair getDocumentById(
 			@PathParam("documentId") String documentId) {
 		DocumentRepository repository = getDocRepo();
 		return repository.getById(documentId);
@@ -25,7 +25,7 @@ public class DocumentService {
 	@GET
 	@Path("/random")
 	@Produces(MediaType.APPLICATION_JSON)
-	public DocumentForm getRandomDocument() {
+	public DbObjectIdPair getRandomDocument() {
 		DocumentRepository repository = getDocRepo();
 		return repository.getRandom();
 	}
