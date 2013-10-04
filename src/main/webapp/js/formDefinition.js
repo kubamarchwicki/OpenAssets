@@ -3,8 +3,6 @@ app.form_definition = {
 
 		page1: {
 			fields : [
-				{ name: "name", desc: "Imię"},
-				{ name: "date_of_birth", desc: "Data urodzenia"},
 				{ name: "place_of_birth", desc: "Miejsce urodzenia" },
 				{ name: "work", desc: "Miejsce zatrudnienia"},
 				{ name: "cash_pln", desc: "Środki pieniężne zgromadzone w walucie polskiej" }, 
