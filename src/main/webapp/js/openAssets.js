@@ -106,7 +106,7 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
 }
 
 // image zoomer
-(function() {
+$(function() {
 	var img = $('.document-image img');
 
 	// drag
@@ -141,5 +141,5 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
 		}
 	});
 		
-})();
+});
 
