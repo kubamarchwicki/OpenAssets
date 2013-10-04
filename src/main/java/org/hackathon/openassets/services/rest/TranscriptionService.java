@@ -13,7 +13,7 @@ import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Path("transcription")
+@Path("transcriptions")
 public class TranscriptionService {
 
 	private final static Logger LOG = LoggerFactory

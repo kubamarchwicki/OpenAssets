@@ -20,11 +20,11 @@ openAssets.config(function($routeProvider) {
 });
 
 openAssets.service('RandomImageInfo', function($http) {
-	return $http.get('rest/document/random');
+	return $http.get('rest/documents/random');
 });
 
 openAssets.service('ImageInfoById', function($http, $routeParams) {
-	return $http.get('rest/document/' + $routeParams.documentId);
+	return $http.get('rest/documents/' + $routeParams.documentId);
 });
 
 function ThankYouCtrl($scope, $location) {
@@ -72,7 +72,7 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
 	}
 
 	postDocument = function(document) {
-		return $http.post('rest/transcription/', document);
+		return $http.post('rest/transcriptions/', document);
 	}
 
 	documentUpdateSuccesfull = function(data, status, headers, config) {

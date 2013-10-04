@@ -10,7 +10,7 @@ import org.hackathon.openassets.db.repository.RepositoryFactory;
 import org.hackathon.openassets.db.repository.mongodb.DocumentsRepository;
 import org.hackathon.openassets.model.DocumentForm;
 
-@Path("document")
+@Path("documents")
 public class DocumentService {
 
 	@GET
