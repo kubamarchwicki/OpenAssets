@@ -114,7 +114,7 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
 	img.mousedown(function(event){
 		var target = $(event.target);
 		drag = {
-			img: target;
+			img: target,
 			startX: event.pageX - target.css('left'),
 			startY: event.pageY - target.css('top')
 		};
