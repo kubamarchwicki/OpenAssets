@@ -23,10 +23,10 @@ public class TranscriptionService {
 	@GET
 	@Path("/{transcriptionId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public MappedDocument getDocument(
+	public String getDocument(
 			@PathParam("transcriptionId") String documentId) {
-		MappedDocumentRepository repository = getDocRepo();
-		return repository.getById(documentId);
+		MappedDocumentRepository repository = new RepositoryFactory().getMappedDocumentsRepository();
+		return repository.findDocument(documentId);
 	}
 
 	@POST
@@ -35,14 +35,8 @@ public class TranscriptionService {
 		//TODO: add IP address of document submitter GSON
 		//TODO: validation @NotNull
 		LOG.info("Recieved object: " + form);
-		MappedDocumentRepository repo = getDocRepo();
+		MappedDocumentRepository repo = new RepositoryFactory().getMappedDocumentsRepository();
 		repo.insert(form);
 	}
 
-	/**
-	 * @return repository object
-	 */
-	protected MappedDocumentRepository getDocRepo() {
-		return new RepositoryFactory().getMappedDocumentRepository();
-	}
 }

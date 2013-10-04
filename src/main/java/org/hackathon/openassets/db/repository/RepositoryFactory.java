@@ -1,16 +1,30 @@
 package org.hackathon.openassets.db.repository;
 
-import org.hackathon.openassets.db.repository.mongodb.DocumentRepository;
+import java.io.IOException;
+
+import org.hackathon.openassets.db.repository.mongodb.DbMongoClient;
+import org.hackathon.openassets.db.repository.mongodb.DocumentsRepository;
+import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
 import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
 
 public class RepositoryFactory {
-
-	public DocumentRepository getDocumentRepository() {
-		return new DocumentRepository();
+	
+	private static DbMongoClient MONGODB_CLIENT = null;
+	
+	static {
+		try {
+			MONGODB_CLIENT = new DbMongoClient();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
-	public MappedDocumentRepository getMappedDocumentRepository() {
-		return new MappedDocumentRepository();
+	public DocumentsRepository getDocumentsRepository() {
+		return MONGODB_CLIENT.getDocumentsRepository();
+	}
+
+	public MappedDocumentRepository getMappedDocumentsRepository() {
+		return MONGODB_CLIENT.getMappedDocumentsRepository();
 	}
 
 }

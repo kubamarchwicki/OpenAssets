@@ -6,10 +6,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hackathon.openassets.datagrabber.HtmlDocumentSnippetReader;
 import org.hackathon.openassets.datagrabber.ImageNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @XmlRootElement
-public class DbObjectIdPair {
-
+public class DocumentForm {
+	private final static Logger LOG = LoggerFactory
+			.getLogger(DocumentForm.class);
+	
 	private String ep_object_id;
 	private String document_id;
 	private List<ImageNode> images;
@@ -41,8 +45,16 @@ public class DbObjectIdPair {
 	public void downloadImages() {
 		List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
 				.getImageUrls(getDocument_id());
+		
 		this.setImages(imagesUrlList);
 	}
+
+	@Override
+	public String toString() {
+		return "DbObjectIdPair [ep_object_id=" + ep_object_id
+				+ ", document_id=" + document_id + ", images.size()=" + ((images != null)?images.size():0) + "]";
+	}
+	
 	
 	
 }

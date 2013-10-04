@@ -1,64 +1,46 @@
 package org.hackathon.openassets.db.repository.mongodb;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hackathon.openassets.model.MappedDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 
 public class MappedDocumentRepository {
+
+	private final DBCollection mappedDocumentCollection;
 	private final static Logger LOG = LoggerFactory
 			.getLogger(MappedDocumentRepository.class);
 
-	private MappedDocumentDao mappedDocumentsDao;
-
-	public MappedDocumentRepository() {
-		try {
-			DbMongoClient dbMongoClient = new DbMongoClient();
-			mappedDocumentsDao = dbMongoClient.getMappedDocumentsDao();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public MappedDocumentRepository(final DB database) {
+		mappedDocumentCollection = database.getCollection("mapped_documents");
 	}
-	
+
 	public void insert(String document) {
-		mappedDocumentsDao.insert(document);
+		DBObject objectToSave = (DBObject) JSON.parse(document);
+		mappedDocumentCollection.insert(objectToSave);
 	}
 
-	//?? no longer needed
 	
-	public MappedDocument getById(String documentId) {
-		MappedDocument mappedDocument = null;
+	public String findDocument(String documentId) {
+		//TODO: remove ObjectId from Query
+		DBObject document = null;
 
-		DBObject object = mappedDocumentsDao.findDocument(documentId);
-		if (object != null) {
-			String objectString = JSON.serialize(object);
-			Gson gson = new Gson();
-			mappedDocument = (MappedDocument) gson.fromJson(objectString,
-					MappedDocument.class);
-		}
-		return mappedDocument;
-	}
+		BasicDBObject query = new BasicDBObject("document_id", documentId);
 
-	public List<MappedDocument> getTrusted() {
-		List<DBObject> objects = mappedDocumentsDao.queryTrustedDocuments();
+		LOG.info("findDocument query: {}", query);
+		document = mappedDocumentCollection.findOne(query);
 
-		List<MappedDocument> documents = new ArrayList<MappedDocument>();
-		for (DBObject object : objects) {
-			String objectString = JSON.serialize(object);
-			Gson gson = new Gson();
-			documents.add((MappedDocument) gson.fromJson(objectString,
-					MappedDocument.class));
+		if (document == null) {
+			// System.out.println("Document not in database");
+			return null;
 		}
 
-		LOG.info("Returning [count={}] truested documents", documents.size());
-		return documents;
+		LOG.info("Document found: {}", document.toString());
+		return document.toString();
 	}
 
 }
