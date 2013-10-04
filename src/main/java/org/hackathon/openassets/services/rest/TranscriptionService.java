@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.hackathon.openassets.db.repository.RepositoryFactory;
 import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
-import org.hackathon.openassets.model.MappedDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

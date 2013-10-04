@@ -31,13 +31,9 @@ public class DocumentsRepository {
 			return null;
 		}
 
-		DocumentForm documentIdPair = new DocumentForm();
-		documentIdPair.setEp_object_id(getFromDbObject(document, "id"));
-		documentIdPair.setDocument_id(getFromDbObject(document, "document_id"));
-		documentIdPair.downloadImages();
-
-		LOG.info("Found {}", documentIdPair);
-		return documentIdPair;
+		DocumentForm d = getDocumentForm(document);
+		LOG.info("Found {}", d);
+		return d;
 	}
 
 	public DocumentForm getRandomDocument() {
@@ -47,16 +43,22 @@ public class DocumentsRepository {
 		Random random = new Random();
 		int randomValue = random.nextInt((int)cnt);
 		DBObject randomDocument = documentsCollection.find().limit(-1).skip(randomValue).next();
-
-		DocumentForm documentIdPair = new DocumentForm();
-		documentIdPair.setEp_object_id(getFromDbObject(randomDocument, "id"));
-		documentIdPair.setDocument_id(getFromDbObject(randomDocument, "document_id"));
-		documentIdPair.downloadImages();
-
-		LOG.info("Random {}", documentIdPair);
-		return documentIdPair;
+		
+		DocumentForm d = getDocumentForm(randomDocument);
+		LOG.info("Random {}", d);
+		return d;
 	}
 
+	private DocumentForm getDocumentForm(DBObject document) {
+		DocumentForm documentIdPair = new DocumentForm();
+		documentIdPair.setEp_object_id(getFromDbObject(document, "id"));
+		documentIdPair.setDocument_id(getFromDbObject(document, "document_id"));
+		documentIdPair.setPosel_id(getFromDbObject(document, "posel_id"));
+		documentIdPair.downloadImages();
+
+		return documentIdPair;
+	}
+	
 	private String getFromDbObject(DBObject obj, String field) {
 		BasicDBObject data = (BasicDBObject) obj.get("data");
 		String returnStr = (String) data.get(field);

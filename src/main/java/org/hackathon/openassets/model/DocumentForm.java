@@ -6,16 +6,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hackathon.openassets.datagrabber.HtmlDocumentSnippetReader;
 import org.hackathon.openassets.datagrabber.ImageNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @XmlRootElement
 public class DocumentForm {
-	private final static Logger LOG = LoggerFactory
-			.getLogger(DocumentForm.class);
-	
 	private String ep_object_id;
 	private String document_id;
+	private String posel_id;
 	private List<ImageNode> images;
 	
 	public String getEp_object_id() {
@@ -32,6 +28,14 @@ public class DocumentForm {
 
 	public void setDocument_id(String document_id) {
 		this.document_id = document_id;
+	}
+
+	public String getPosel_id() {
+		return posel_id;
+	}
+
+	public void setPosel_id(String posel_id) {
+		this.posel_id = posel_id;
 	}
 
 	public List<ImageNode> getImages() {
