@@ -2,13 +2,13 @@ var openAssets = angular.module('openAssets', [ 'ngResource' ]);
 
 openAssets.config(function($routeProvider) {
 	$routeProvider.when('/', {
-		controller : function($scope, $location, $routeParams, $http, RandomImageInfo) {
-			return OpenAssetsCtrl($scope, $location, $routeParams, $http, RandomImageInfo);
+		controller : function($scope, $location, $routeParams, $http, $log, $resource, RandomImageInfo) {
+			return OpenAssetsCtrl($scope, $location, $routeParams, $http, $log, $resource, RandomImageInfo);
 		},
 		templateUrl : 'home.html'
 	}).when('/asset/:documentId', {
-		controller : function($scope, $location, $routeParams, $http, ImageInfoById) {
-			return OpenAssetsCtrl($scope, $location, $routeParams, $http, ImageInfoById);
+		controller : function($scope, $location, $routeParams, $http, $log, $resource, ImageInfoById) {
+			return OpenAssetsCtrl($scope, $location, $routeParams, $http, $log, $resource, ImageInfoById);
 		},		
 		templateUrl : 'home.html'
 	}).when('/thankyou', {
@@ -33,7 +33,7 @@ function ThankYouCtrl($scope, $location) {
 	};
 }
 
-function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
+function OpenAssetsCtrl($scope, $location, $routeParams, $http, $log, $resource, Service) {
 
 	var currentIndex = 1;
 
@@ -46,6 +46,10 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
 		currentIndex = index;
 	}
 
+	bindHtmlSnippet = function(data, status, headers, config) {
+		$scope.snippet = data.html
+	}
+	
 	bindImageInfo = function(data, status, headers, config) {
 		data.images.forEach(function(docimage) {
 			if (docimage.id === "page1") {
@@ -62,6 +66,8 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, Service) {
 			'ep_object_id' : data.ep_object_id
 		};
 
+		$http.get('rest/snippet/poslowie/'+data.posel_id).success(bindHtmlSnippet);
+		
 		$scope.is_last = function() {
 			return (currentIndex == $scope.docimages.length);
 		}
