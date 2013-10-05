@@ -6,6 +6,22 @@ Forms to digitalize Assets Declaration from Members of Parlament
 Application runs under: http://openassets.herokuapp.com/
 
 
+API
+===
+Aplikacja udostępnia REST API do przeglądania już przepisanych dokumentów
+
+```
+http://openassets.herokuapp.com/rest/transcriptions/count
+```
+Wyświetla sumaryczną informację o ilości przepisanych dokumentów. 
+
+
+```
+http://openassets.herokuapp.com/rest/transcriptions/<dokument_id>
+```
+Wyświetla wszystkie przesłane transkrypcje wybranego dokumentu.
+
+
 Zależności
 ==========
 Projekt używa mongodb to przechowywania danych.
