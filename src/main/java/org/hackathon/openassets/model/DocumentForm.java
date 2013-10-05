@@ -47,7 +47,7 @@ public class DocumentForm {
 	}
 	
 	public void downloadImages() {
-		List<ImageNode> imagesUrlList = HtmlDocumentSnippetReader
+		List<ImageNode> imagesUrlList = new HtmlDocumentSnippetReader()
 				.getImageUrls(getDocument_id());
 		
 		this.setImages(imagesUrlList);
