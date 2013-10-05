@@ -16,10 +16,13 @@
 	
 		<ng-include src="'navigation.html'"></ng-include>
 
+        <div>
+        	<button zoom-btn-init id="zoom-button" class="btn" type="button">+</button>
+        </div>
 
         <div id="image-form" class="row-fluid" ng-repeat="docimage in docimages" >
             <div id="{{docimage.id}}"  class="document-container {{docimage.page_class}}" >
-                <div class="span8 document-image">
+                <div zoom-init class="span8 document-image" >
                     <img ng-src="{{docimage.url}}"/>
                 </div>
 

@@ -18,6 +18,15 @@ html, body {
 
 .document-image {
 	background-color: #ffeeee;
+	overflow: hidden;
+	height: 1000px;
+	cursor: move;
+}
+
+.document-image img {
+	position: relative;
+	top: 0px;
+	left: 0px;
 }
 
 .document-form {
