@@ -19,7 +19,14 @@ html, body {
 .document-image {
 	background-color: #ffeeee;
 	overflow: hidden;
-	max-height: 1000px;
+	height: 1000px;
+	cursor: move;
+}
+
+.document-image img {
+	position: relative;
+	top: 0px;
+	left: 0px;
 }
 
 .document-form {
