@@ -100,7 +100,7 @@
 	</build>
 
 	<dependencies>
-		<!-- jettu runtime -->
+		<!-- jetty runtime -->
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-webapp</artifactId>
@@ -115,6 +115,11 @@
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
 			<version>${jersey-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>0.8.1</version>
 		</dependency>
 
 		<!-- mongo -->
@@ -153,6 +158,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-assert</artifactId>
+			<version>0.8.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
