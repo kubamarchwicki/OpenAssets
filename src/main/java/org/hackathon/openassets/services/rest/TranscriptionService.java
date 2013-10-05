@@ -1,11 +1,13 @@
 package org.hackathon.openassets.services.rest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.hackathon.openassets.db.repository.RepositoryFactory;
@@ -19,6 +21,9 @@ public class TranscriptionService {
 	private final static Logger LOG = LoggerFactory
 			.getLogger(TranscriptionService.class);
 
+	@Context
+	private HttpServletRequest request;
+	
 	@GET
 	@Path("/{transcriptionId}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -31,11 +36,15 @@ public class TranscriptionService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateDocument(final String form) {
-		//TODO: add IP address of document submitter GSON
 		//TODO: validation @NotNull
-		LOG.info("Recieved object: " + form);
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+		    ipAddress = request.getRemoteAddr();
+		}
+
+		LOG.info("Recieved object: {} from IPAddress: {} ", form,  ipAddress);
 		MappedDocumentRepository repo = new RepositoryFactory().getMappedDocumentsRepository();
-		repo.insert(form);
+		repo.insert(form, ipAddress);
 	}
 
 }

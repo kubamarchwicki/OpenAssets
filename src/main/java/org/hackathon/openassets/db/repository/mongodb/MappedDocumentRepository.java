@@ -19,8 +19,12 @@ public class MappedDocumentRepository {
 		mappedDocumentCollection = database.getCollection("mapped_documents");
 	}
 
-	public void insert(String document) {
-		DBObject objectToSave = (DBObject) JSON.parse(document);
+	public void insert(String document, String ipAddress) {
+		BasicDBObject objectToSave = (BasicDBObject) JSON.parse(document);
+		objectToSave.append("requestData", 
+				new BasicDBObject("ip-address", ipAddress));
+		
+		LOG.debug("Inserting {}", objectToSave);
 		mappedDocumentCollection.insert(objectToSave);
 	}
 
