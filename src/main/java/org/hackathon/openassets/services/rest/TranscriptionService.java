@@ -23,14 +23,23 @@ public class TranscriptionService {
 
 	@Context
 	private HttpServletRequest request;
+
+	@GET
+	@Path("/count")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getMappedDocumentsCount() {
+		MappedDocumentRepository repository = new RepositoryFactory().getMappedDocumentsRepository();
+		return repository.countMappedDocuments();
+	}
+
 	
 	@GET
-	@Path("/{transcriptionId}")
+	@Path("/{documentId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getDocument(
-			@PathParam("transcriptionId") String documentId) {
+			@PathParam("documentId") String documentId) {
 		MappedDocumentRepository repository = new RepositoryFactory().getMappedDocumentsRepository();
-		return repository.findDocument(documentId);
+		return repository.findDocuments(documentId);
 	}
 
 	@POST
