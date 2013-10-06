@@ -121,8 +121,8 @@
 			<artifactId>json-path</artifactId>
 			<version>0.8.1</version>
 		</dependency>
-		
-                <!-- mongo -->
+
+		<!-- mongo -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
@@ -135,10 +135,28 @@
 			<version>5.4.1</version>
 		</dependency>
 
+		<!-- logging -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.9</version>
+		</dependency>
+
+		<!-- web dependencies -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>1.0.5</version>
 		</dependency>
 
 		<!-- tests -->
