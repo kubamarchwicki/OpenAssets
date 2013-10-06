@@ -7,13 +7,14 @@ define("LIMIT", 100);
 
 $searcher = new ep_Search();
 $searcher->setDataset("poslowie_oswiadczenia_majatkowe");
-$searcher->load(LIMIT);
-
-$objects = $searcher->getObjects();
+$searcher->load(1);
 
 $p = $searcher->getPagination();
 
-for($i = 1; $i<=((int)$p["total"]/LIMIT)+2; $i++) {
+for($i = 1; $i<=((int)$p["total"]/LIMIT)+1; $i++) {
+
+    $searcher->load(LIMIT, $i);
+    $objects = $searcher->getObjects();
 
     foreach ($objects as $data) {
         $array = array();
@@ -27,8 +28,6 @@ for($i = 1; $i<=((int)$p["total"]/LIMIT)+2; $i++) {
         echo json_encode($array);
        echo "\n";
     }
-    
-    $searcher->load(LIMIT, $i);
-    $objects = $searcher->getObjects();
+
 }
 ?>
