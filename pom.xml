@@ -9,7 +9,8 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<jersey-version>1.4</jersey-version>
+		<version.jetty>8.1.13.v20130916</version.jetty>
+		<version.jersey>1.4</version.jersey>
 	</properties>
 
 	<repositories>
@@ -56,7 +57,7 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>7.6.13.v20130916</version>
+				<version>8.1.13.v20130916</version>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<systemProperties>
@@ -104,17 +105,17 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-webapp</artifactId>
-			<version>7.6.13.v20130916</version>
+			<version>${version.jetty}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
-			<version>${jersey-version}</version>
+			<version>${version.jersey}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
-			<version>${jersey-version}</version>
+			<version>${version.jersey}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
