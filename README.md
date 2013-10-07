@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kodujdlapolski/OpenAssets.png)](https://travis-ci.org/kodujdlapolski/OpenAssets)
+
 OpenAssets project 
 ------------------
 
