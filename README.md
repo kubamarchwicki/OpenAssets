@@ -1,9 +1,27 @@
+[![Build Status](https://travis-ci.org/kodujdlapolski/OpenAssets.png)](https://travis-ci.org/kodujdlapolski/OpenAssets)
+
 OpenAssets project 
 ------------------
 
 Forms to digitalize Assets Declaration from Members of Parlament
 
 Application runs under: http://openassets.herokuapp.com/
+
+
+API
+===
+Aplikacja udostępnia REST API do przeglądania już przepisanych dokumentów
+
+```
+http://openassets.herokuapp.com/rest/transcriptions/count
+```
+Wyświetla sumaryczną informację o ilości przepisanych dokumentów. 
+
+
+```
+http://openassets.herokuapp.com/rest/transcriptions/<dokument_id>
+```
+Wyświetla wszystkie przesłane transkrypcje wybranego dokumentu.
 
 
 Zależności
@@ -19,6 +37,10 @@ Jeżeli zmienna nie jest ustawiona przymowana jest wartość domyślna:
 ```
 mongodb://localhost/hackaton
 ```
+
+Import bazy danych komendą `mongoimport -c documents /sciezka/do/pliku/import.json`
+Plik `import.json` generowany jest na podstawie danych z serwisu sejmometr.pl. Najnowsze dane można wygenerować za pomocą API i skryptu `mongo/import.php`.
+
 
 Uruchomienie projektu lokalnie
 ==============================
@@ -53,7 +75,7 @@ heroku addons:open mongohq
 W przeglądarce zostanie otwarta pełna informacja nt. bazy
 
 3. Załaduj przykładowe dane do bazy.  Zgodnie z opisem: https://devcenter.heroku.com/articles/mongohq#upgrading-your-database.  Zamiast `mongorestore` importujemy zawatość pliku `init_import.json`
-`mongoimport -c documents -h <hostname>.mongohq.com:<port> -d <baza_danych> -u <username> -p <haslo> /sciezka/do/pliku/init_import.json `
+`mongoimport -c documents -h <hostname>.mongohq.com:<port> -d <baza_danych> -u <username> -p <haslo> /sciezka/do/pliku/import.json `
 Login i hasło do instancji mongodb na heroku dostępne przekazywane jest poprzez zmienną środowiskową MONGOHQ_URL. Aby wyświetlić wartość zmiennych dla instancji heroku wpisz `heroku config`
 
 4. Dodaj nowy `git remote`

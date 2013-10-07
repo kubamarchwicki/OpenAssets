@@ -1,12 +1,15 @@
 html, body {
+	max-width: 940px;
     height: 100%;
-	background-color: #fff;
+    background-color: #fff;
 }
 
 .viewport {
     height:100%;
+	max-width: 940px;
 }
 .container{
+	max-width: 940px;
 	background:#fff;
 	margin-top:10px;
 }
