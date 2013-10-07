@@ -36,6 +36,8 @@ h1 {
 	height: 100%;
 }
 
+#zoom-button {display: none;}
+
 .document-image {
 	background-color: #ddd;
 	overflow: hidden;
