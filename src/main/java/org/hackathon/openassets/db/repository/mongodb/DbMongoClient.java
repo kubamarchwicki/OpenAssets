@@ -14,13 +14,11 @@ public class DbMongoClient {
 			.getLogger(DbMongoClient.class);
 	private final static String DEFAUFT_CONNECTION_URL = "mongodb://localhost/hackaton";
 	
-	private DocumentsDao documentsDao;
+	private DocumentsRepository documentsRepository;
 	
-	private MappedDocumentDao mappedDocumentsDao;
+	private MappedDocumentRepository mappedDocumentsRepository;
 	
 	final DB database;
-
-
 
 	public DbMongoClient() throws IOException {
 		MongoURI mongoURI = new MongoURI(getConnecionUrl());
@@ -31,14 +29,14 @@ public class DbMongoClient {
 		}
 	}
 
-	public DocumentsDao getDocumentsDao() {
-		documentsDao = new DocumentsDaoImpl(database);
-		return documentsDao;
+	public DocumentsRepository getDocumentsRepository() {
+		documentsRepository = new DocumentsRepository(database);
+		return documentsRepository;
 	}
 
-	public MappedDocumentDao getMappedDocumentsDao() {
-		mappedDocumentsDao = new MappedDocumentDaoImpl(database);
-		return mappedDocumentsDao;
+	public MappedDocumentRepository getMappedDocumentsRepository() {
+		mappedDocumentsRepository = new MappedDocumentRepository(database);
+		return mappedDocumentsRepository;
 	}
 
 	private static String getConnecionUrl() {

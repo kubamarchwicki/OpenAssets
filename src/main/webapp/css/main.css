@@ -21,6 +21,15 @@ html, body {
 
 .document-image {
 	background-color: #ffeeee;
+	overflow: hidden;
+	height: 1000px;
+	cursor: move;
+}
+
+.document-image img {
+	position: relative;
+	top: 0px;
+	left: 0px;
 }
 
 .document-form {
@@ -71,6 +80,16 @@ html, body {
 	float: right;
 }
 
+textarea {
+	 word-wrap: break-word;
+	 height: auto;
+	 transition: 0.05s;
+	 -moz-transition: 0.05s;
+	 -webkit-transition: 0.05s;
+	 -o-transition: 0.05s;
+ }
+ 
 .form {
 	width: 90%;
 }
+

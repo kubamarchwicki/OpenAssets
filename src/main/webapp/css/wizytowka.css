@@ -1,0 +1,39 @@
+#wizytowka {
+	max-width:500px;
+	margin: auto;
+}
+
+#wizytowka .avatar {
+	float: left;
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+}
+
+#wizytowka .avatar img {
+	border: 2px solid #EEE;
+	margin: 0;
+	padding: 0;
+}
+
+#wizytowka .opis {
+	margin: 0 0 0 70px;
+	padding: 2px 0 0 0;
+}
+
+#wizytowka .opis h2 {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+#wizytowka .opis p {
+	margin: 3px 0 0 0;
+	padding: 0;
+}
+
+#wizytowka .opis a {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}

@@ -1,44 +1,30 @@
 package org.hackathon.openassets.db.repository;
 
-/**
- * Repository factory.
- */
-public class RepositoryFactory {
+import java.io.IOException;
 
-	/**
-	 * Produces document repository.
-	 * 
-	 * @param clazz
-	 *            repository implementation class
-	 * @return repository
-	 */
-	public DocumentRepository getDocumentRepository(
-			Class<? extends DocumentRepository> clazz) {
+import org.hackathon.openassets.db.repository.mongodb.DbMongoClient;
+import org.hackathon.openassets.db.repository.mongodb.DocumentsRepository;
+import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
+import org.hackathon.openassets.db.repository.mongodb.MappedDocumentRepository;
+
+public class RepositoryFactory {
+	
+	private static DbMongoClient MONGODB_CLIENT = null;
+	
+	static {
 		try {
-			return clazz.newInstance();
-		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
+			MONGODB_CLIENT = new DbMongoClient();
+		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	/**
-	 * Produces mapped document repository.
-	 * 
-	 * @param clazz
-	 *            repository implementation class
-	 * @return repository
-	 */
-	public MappedDocumentRepository getMappedDocumentRepository(
-			Class<? extends MappedDocumentRepository> clazz) {
-		try {
-			return clazz.newInstance();
-		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
+	public DocumentsRepository getDocumentsRepository() {
+		return MONGODB_CLIENT.getDocumentsRepository();
+	}
+
+	public MappedDocumentRepository getMappedDocumentsRepository() {
+		return MONGODB_CLIENT.getMappedDocumentsRepository();
 	}
 
 }
