@@ -13,10 +13,21 @@
 				<div ng-bind-html-unsafe="snippet"></div>
 			</div>
 
-			<ng-include src="'navigation.html'"></ng-include>
-
-			<div>
-				<button zoom-btn-init id="zoom-button" class="btn" type="button">+</button>
+			<div class="row-fluid top-bar">
+				<div class="span6">
+					<div id="pagination-bar" class="pagination pagination-right">
+						<ul>
+							<li id="link_{{docimage_page.id}}"
+								class="page_link {{docimage_page.button_class}}"
+								ng-repeat="docimage_page in docimages"><a href=""
+								ng-click="page_selected($index+1)">{{$index+1}}</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="span3">
+					<button zoom-btn-in id="zoom-button" class="btn-zoom" type="button">+</button>
+					<button zoom-btn-out id="zoom-button" class="btn-zoom" type="button">-</button>
+				</div>
 			</div>
 
 			<div id="image-form" class="row-fluid"

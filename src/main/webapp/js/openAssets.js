@@ -120,7 +120,7 @@ function OpenAssetsCtrl($scope, $location, $routeParams, $http, $log, $resource,
 imageZoom = {
 	drag: false,
 
-	initBtn: function(zoomBtn) {
+	initBtn: function(zoomBtn, zoom) {
 		zoomBtn.click(function(){
 			var img = $('.document-container:visible img');
 			
@@ -131,18 +131,18 @@ imageZoom = {
 			
 			var w1 = img.width();
 			var h1 = img.height();
-			if (zoomBtn.hasClass('btn-primary')) {
-				img.css('max-width', '100%');
-				zoomBtn.removeClass('btn-primary');
-			} else {
+			if (zoom) {
 				img.css('max-width', '2000px');
-				zoomBtn.addClass('btn-primary');
+				var w2 = img.width();
+				var h2 = img.height();
+				
+				img.css('left', ''+(left - (w2 - w1)/2)+'px');
+				img.css('top', ''+(top - (h2 - h1)/2)+'px');
+			} else {
+				img.css('max-width', '100%');
+				img.css('left', '0px');
+				img.css('top', '0px');
 			}
-			var w2 = img.width();
-			var h2 = img.height();
-			
-			img.css('left', ''+(left - (w2 - w1)/2)+'px');
-			img.css('top', ''+(top - (h2 - h1)/2)+'px');
 		});
 	},
 	
@@ -174,7 +174,10 @@ openAssets.directive('zoomInit', function(){ return function(scope, element, att
 	imageZoom.initImg(element.children('img'));
 };});
 
-openAssets.directive('zoomBtnInit', function(){ return function(scope, element, attr) {
-	imageZoom.initBtn(element);
+openAssets.directive('zoomBtnIn', function(){ return function(scope, element, attr) {
+	imageZoom.initBtn(element, true);
 };});
 
+openAssets.directive('zoomBtnOut', function(){ return function(scope, element, attr) {
+	imageZoom.initBtn(element, false);
+};});
