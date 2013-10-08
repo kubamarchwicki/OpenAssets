@@ -38,6 +38,10 @@ h1 {
 
 #zoom-button {display: none;}
 
+.btn {
+	width: 200px;
+}
+
 .document-image {
 	background-color: #ddd;
 	overflow: hidden;

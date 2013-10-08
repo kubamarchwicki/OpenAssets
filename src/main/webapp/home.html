@@ -1,48 +1,60 @@
-<body ng-controller="InitializeForms" xmlns="http://www.w3.org/1999/html">
+<body ng-controller="InitializeForms"
+	xmlns="http://www.w3.org/1999/html">
 
 
-<div class="container-fluid ">
-    <form ng-submit="saveInput()">
+	<div class="container-fluid ">
+		<form ng-submit="saveInput()">
 
-	 <div class="page-header pagination-centered">
-        <h1>
-            Oświadczenia majątkowe posłów na sejm RP
-        </h1>
-        <div class="lead">
-            Aby umożliwić nam przetwarzanie zeznań majątkowych posłów, prosimy o wypełnienie pól na wszystkich stronach, a nastepnie naciśnięcie przycisku wyślij.
-        </div>
-        <div ng-bind-html-unsafe="snippet"></div>
+			<div class="page-header pagination-centered">
+				<h1>Oświadczenia majątkowe posłów na sejm RP</h1>
+				<div class="lead">Aby umożliwić nam przetwarzanie zeznań
+					majątkowych posłów, prosimy o wypełnienie pól na wszystkich
+					stronach, a nastepnie naciśnięcie przycisku wyślij.</div>
+				<div ng-bind-html-unsafe="snippet"></div>
+			</div>
+
+			<ng-include src="'navigation.html'"></ng-include>
+
+			<div>
+				<button zoom-btn-init id="zoom-button" class="btn" type="button">+</button>
+			</div>
+
+			<div id="image-form" class="row-fluid"
+				ng-repeat="docimage in docimages">
+				<div id="{{docimage.id}}"
+					class="document-container {{docimage.page_class}}">
+					<div zoom-init class="span8 document-image">
+						<img ng-src="{{docimage.url}}" />
+					</div>
+
+					<div class="span4 document-form">
+						<div ng-repeat="field in form_definition[docimage.id].fields">
+							<label>{{field.desc}}</label>
+							<textarea auto-grow rows="1" name="{{field.name}}" class="form"
+								ng-model="userinput[field.name]"></textarea>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row-fluid top-bar pagination-centered">
+				<div class="span8" ng-show="!is_last()">
+					<button id="next-button" class="btn btn-primary"
+						ng-click="next_page($event)">Następny</button>
+					<button id="send-button" class="btn btn-secondary" type="submit">Wyślij</button>
+				</div>
+				<div class="span8" ng-show="is_last()">
+					<button id="next-button" class="btn btn-secondary" disabled>Następny</button>
+					<button id="send-button" class="btn btn-primary" type="submit">Wyślij</button>
+				</div>
+			</div>
+
+		</form>
+
+
+
 	</div>
-	
-		<ng-include src="'navigation.html'"></ng-include>
-
-        <div>
-        	<button zoom-btn-init id="zoom-button" class="btn" type="button">+</button>
-        </div>
-
-        <div id="image-form" class="row-fluid" ng-repeat="docimage in docimages" >
-            <div id="{{docimage.id}}"  class="document-container {{docimage.page_class}}" >
-                <div zoom-init class="span8 document-image" >
-                    <img ng-src="{{docimage.url}}"/>
-                </div>
-
-                <div class="span4 document-form" >
-                    <div ng-repeat="field in form_definition[docimage.id].fields">
-                        <label>{{field.desc}}</label>
-                        <textarea auto-grow rows="1" name="{{field.name}}" class="form" ng-model="userinput[field.name]"></textarea>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-		<ng-include src="'navigation.html'"></ng-include>
-
-    </form>
-
-
-
-</div>
 
 
 </body>
